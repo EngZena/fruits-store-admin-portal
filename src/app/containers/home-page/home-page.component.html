@@ -1,1 +1,50 @@
-<p>home-page works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form>
+        <mat-form-field appearance="outline">
+          <mat-label>Email *</mat-label>
+          <input
+            type="email"
+            matInput
+            [formControl]="emailFormControl"
+            [errorStateMatcher]="matcher"
+            placeholder="user@example.com" />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            ">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password *</mat-label>
+          <input
+            [type]="hide ? 'password' : 'text'"
+            matInput
+            [formControl]="passwordFormControl"
+            [errorStateMatcher]="matcher" />
+          <mat-icon matSuffix (click)="toggleHidePassword()" color="accent">{{
+            hide ? 'visibility_off' : 'visibility'
+          }}</mat-icon>
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <ng-container *ngIf="loading">
+      <mat-divider inset></mat-divider>
+      <mat-progress-bar mode="query"></mat-progress-bar>
+      <mat-divider inset></mat-divider>
+    </ng-container>
+    <mat-card-actions>
+      <button mat-flat-button color="accent">Cancel</button>
+      <button mat-flat-button color="primary" type="submit">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
