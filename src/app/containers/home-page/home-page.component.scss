@@ -1,28 +1,27 @@
-@import "../../../assets/scss/constants.scss";
+@import '../../../assets/scss/constants.scss';
 
 .container {
-    display: flex;
-    height: 100%;
-    mat-card {
-        margin: auto;
-        width: 50%;
-        box-shadow: 
-            0px 0px 10px 0px $gray, 0 15px 5px 0 $gray, 0 5px 5px 0 $gray
-        }
-    mat-card-actions {
-        text-align: center;
-        button {
-            margin: 0 .5rem;
-        }
+  display: flex;
+  height: 100%;
+  mat-card {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0px 0px 10px 0px $gray, 0 15px 5px 0 $gray, 0 5px 5px 0 $gray;
+  }
+  mat-card-actions {
+    text-align: center;
+    button {
+      margin: 0 0.5rem;
     }
+  }
 }
 form {
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    margin: auto;
-    padding: 1.5rem;
-    mat-form-field{
-        display: block;
-    }
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+  padding: 1.5rem;
+  mat-form-field {
+    display: block;
+  }
 }
