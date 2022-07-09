@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from './components/components.module';
 import { ContainersModule } from './containers/containers.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/Shared.module';
 
@@ -14,6 +15,7 @@ import { SharedModule } from './shared/Shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     ContainersModule,
+    FlexLayoutModule,
     SharedModule,
     ComponentsModule,
   ],
