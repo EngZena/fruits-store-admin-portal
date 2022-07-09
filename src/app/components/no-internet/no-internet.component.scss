@@ -1,0 +1,13 @@
+@import '../../../assets/scss/constants.scss';
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h2 {
+  color: $gray;
+  text-align: center;
+}
