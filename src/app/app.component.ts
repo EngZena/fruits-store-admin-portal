@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { ThemeService } from './core/services/theme/theme.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'fruits-store-admin-portal';
+export class AppComponent implements OnInit {
+  isDarkTheme!: Observable<boolean>;
+
+  constructor(private themeService: ThemeService) {}
+  ngOnInit(): void {
+    this.isDarkTheme = this.themeService.isDarkTheme;
+  }
 }
