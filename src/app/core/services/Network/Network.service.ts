@@ -11,9 +11,9 @@ export class NetworkService {
     return merge<boolean>(
       fromEvent(window, 'offline').pipe(map(() => false)),
       fromEvent(window, 'online').pipe(map(() => true)),
-      new Observable((sub: Observer<boolean>) => {
-        sub.next(navigator.onLine);
-        sub.complete();
+      new Observable((subject: Observer<boolean>) => {
+        subject.next(navigator.onLine);
+        subject.complete();
       })
     );
   }
