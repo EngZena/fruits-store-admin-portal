@@ -1,0 +1,24 @@
+@import '@angular/material/theming';
+
+@include mat-core();
+
+$primary: mat-palette($mat-pink);
+$accent: mat-palette($mat-cyan, A200, A100, A400);
+$warn: mat-palette($mat-amber);
+$background-color: map_get($mat-pink, 50);
+$theme: mat-light-theme($primary, $accent, $warn);
+$background: map-get($theme, background);
+$background: map_merge(
+  $background,
+  (
+    background: $background-color,
+  )
+);
+$theme: map_merge(
+  $theme,
+  (
+    background: $background,
+  )
+);
+
+@include angular-material-theme($theme);
