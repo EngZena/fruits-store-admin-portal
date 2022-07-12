@@ -7,6 +7,7 @@ import { ContainersModule } from './containers/containers.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/Shared.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { SharedModule } from './shared/Shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({}),
     ContainersModule,
     FlexLayoutModule,
     SharedModule,
