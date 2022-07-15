@@ -44,7 +44,9 @@
     </ng-container>
     <mat-card-actions>
       <button mat-flat-button color="accent">Cancel</button>
-      <button mat-flat-button color="primary" type="submit">Login</button>
+      <button mat-flat-button color="primary" (click)="onSubmit()">
+        Login
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

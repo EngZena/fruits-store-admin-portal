@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -19,7 +20,7 @@ const materialComponents = [
 
 @NgModule({
   declarations: [],
-  imports: [...materialComponents],
+  imports: [...materialComponents, HttpClientModule],
   exports: [CommonModule, ...materialComponents, ReactiveFormsModule],
 })
 export class SharedModule {}
