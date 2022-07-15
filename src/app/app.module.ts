@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from './components/components.module';
 import { ContainersModule } from './containers/containers.module';
+import { CookieService } from 'ngx-cookie-service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/Shared.module';
@@ -15,13 +16,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreDevtoolsModule.instrument({}),
     ContainersModule,
     FlexLayoutModule,
     SharedModule,
     ComponentsModule,
+    StoreDevtoolsModule.instrument({}),
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
