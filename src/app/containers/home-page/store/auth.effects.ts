@@ -111,7 +111,7 @@ export class AuthEffects {
     tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
       if (authSuccessAction.payload.redirect) {
         if (authSuccessAction.payload.email === adminEmail) {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/customers']);
         }
       }
     })
