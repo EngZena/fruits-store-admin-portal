@@ -6,6 +6,7 @@ import { HomePageComponent } from './containers/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductsComponent } from './containers/products/products.component';
+import { ProfileComponent } from './containers/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     component: CustomersComponent,
   },
   { path: 'products', canActivate: [AuthGuard], component: ProductsComponent },
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
