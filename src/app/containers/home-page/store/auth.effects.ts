@@ -165,7 +165,7 @@ export class AuthEffects {
       this.authService.clearLogoutTimer();
       localStorage.removeItem('userData');
       this.cookiesService.deleteAll();
-      this.router.navigate(['/store']);
+      this.router.navigate(['/']);
     })
   );
 }
