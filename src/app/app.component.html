@@ -8,9 +8,9 @@
         <router-outlet></router-outlet>
       </ng-container>
       <ng-container *ngIf="isAuthenticated | async">
-        <!-- <app-layout> -->
-        <router-outlet></router-outlet>
-        <!-- </app-layout> -->
+        <app-layout>
+          <router-outlet></router-outlet>
+        </app-layout>
       </ng-container>
     </ng-container>
   </div>
