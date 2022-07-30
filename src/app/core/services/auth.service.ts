@@ -1,5 +1,5 @@
-import * as AuthActions from '../../containers/login-page/store/auth.actions';
-import * as fromApp from '../../store/app.reducer';
+import * as AuthActions from '@containers/login-page/store/auth.actions';
+import * as fromApp from '@store/app.reducer';
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
