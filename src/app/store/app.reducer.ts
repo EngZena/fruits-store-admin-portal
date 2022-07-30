@@ -1,4 +1,4 @@
-import * as fromAuth from '../containers/login-page/store/auth.reducer';
+import * as fromAuth from '@containers/login-page/store/auth.reducer';
 
 import { ActionReducerMap } from '@ngrx/store';
 

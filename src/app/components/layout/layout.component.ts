@@ -1,11 +1,11 @@
-import * as AuthActions from '../../containers/login-page/store/auth.actions';
-import * as fromApp from '../../store/app.reducer';
+import * as AuthActions from '@containers/login-page/store/auth.actions';
+import * as fromApp from '@store/app.reducer';
 
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Store } from '@ngrx/store';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
+import { ThemeService } from '@core/services/theme/theme.service';
 
 @Component({
   selector: 'app-layout',

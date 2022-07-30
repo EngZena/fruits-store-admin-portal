@@ -1,12 +1,12 @@
-import * as fromApp from './store/app.reducer';
-import * as fromAuthActions from './containers/login-page/store/auth.actions';
+import * as fromApp from '@store/app.reducer';
+import * as fromAuthActions from '@containers/login-page/store/auth.actions';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
-import { NetworkService } from './core/services/Network/Network.service';
+import { NetworkService } from '@core/services/Network/Network.service';
 import { Store } from '@ngrx/store';
-import { ThemeService } from './core/services/theme/theme.service';
+import { ThemeService } from '@core/services/theme/theme.service';
 
 @Component({
   selector: 'app-root',

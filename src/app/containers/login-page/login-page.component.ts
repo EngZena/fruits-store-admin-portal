@@ -1,10 +1,10 @@
 import * as fromActions from '../login-page/store/auth.actions';
-import * as fromApp from '../../store/app.reducer';
+import * as fromApp from '@store/app.reducer';
 
 import { FormControl, Validators } from '@angular/forms';
 
 import { Component } from '@angular/core';
-import { FormControlErrorsService } from 'src/app/core/Handlers/form-controls-errors.service';
+import { FormControlErrorsService } from '@core/Handlers/form-controls-errors.service';
 import { Store } from '@ngrx/store';
 
 @Component({

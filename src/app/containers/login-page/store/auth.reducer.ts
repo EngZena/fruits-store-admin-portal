@@ -1,6 +1,6 @@
 import * as AuthActions from './auth.actions';
 
-import { User } from '../../../core/models/usesr.model';
+import { User } from '@core/models/usesr.model';
 
 export interface State {
   user: User;
