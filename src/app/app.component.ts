@@ -1,5 +1,5 @@
 import * as fromApp from './store/app.reducer';
-import * as fromAuthActions from '../app/containers/home-page/store/auth.actions';
+import * as fromAuthActions from './containers/login-page/store/auth.actions';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';

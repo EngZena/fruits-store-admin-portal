@@ -2,7 +2,7 @@ import * as fromApp from './store/app.reducer';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthEffects } from './containers/home-page/store/auth.effects';
+import { AuthEffects } from './containers/login-page/store/auth.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ComponentsModule } from './components/components.module';

@@ -1,15 +1,15 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './containers/home-page/auth.guard';
+import { AuthGuard } from './containers/login-page/auth.guard';
 import { CustomersComponent } from './containers/customers/customers.component';
-import { HomePageComponent } from './containers/home-page/home-page.component';
+import { LoginPageComponent } from './containers/login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductsComponent } from './containers/products/products.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: LoginPageComponent },
   {
     path: 'customers',
     canActivate: [AuthGuard],
