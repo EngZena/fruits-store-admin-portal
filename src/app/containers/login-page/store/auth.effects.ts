@@ -1,5 +1,5 @@
 import * as AuthActions from './auth.actions';
-import * as services from './../../../core/services/apis/http-instanse';
+import * as services from '../../../core/services/apis/http-instanse';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';

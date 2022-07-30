@@ -1,4 +1,4 @@
-import * as fromActions from './store/auth.actions';
+import * as fromActions from '../login-page/store/auth.actions';
 import * as fromApp from '../../store/app.reducer';
 
 import { FormControl, Validators } from '@angular/forms';
@@ -8,11 +8,11 @@ import { FormControlErrorsService } from 'src/app/core/Handlers/form-controls-er
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
 })
-export class HomePageComponent {
+export class LoginPageComponent {
   hide = true;
   loading = false;
   matcher = new FormControlErrorsService();
