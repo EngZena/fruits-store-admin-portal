@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,7 +14,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-const materialComponents = [
+const materialModules = [
   MatButtonModule,
   MatCardModule,
   MatDividerModule,
@@ -25,20 +26,16 @@ const materialComponents = [
   MatIconModule,
 ];
 
+const angularModules = [
+  HttpClientModule,
+  ReactiveFormsModule,
+  CommonModule,
+  RouterModule,
+];
+
 @NgModule({
   declarations: [],
-  imports: [
-    ...materialComponents,
-    HttpClientModule,
-    ReactiveFormsModule,
-    CommonModule,
-    RouterModule,
-  ],
-  exports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    ...materialComponents,
-  ],
+  imports: [...materialModules, ...angularModules, FlexLayoutModule],
+  exports: [...materialModules, ...angularModules, FlexLayoutModule],
 })
 export class SharedModule {}
