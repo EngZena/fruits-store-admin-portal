@@ -18,10 +18,10 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@store/*" : ["./src/app/store/*"],
+      "@store/*": ["./src/app/store/*"],
       "@components/*": ["./src/app/components/*"],
       "@containers/*": ["./src/app/containers/*"],
-      "@core/*": ["./src/app/core/*"],
+      "@core/*": ["./src/app/core/*"]
     }
   },
   "angularCompilerOptions": {
