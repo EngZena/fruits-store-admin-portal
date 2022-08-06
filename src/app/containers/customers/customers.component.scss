@@ -1,0 +1,24 @@
+@import '@angular/material/theming';
+
+@mixin customer-card-theme($theme) {
+  $primary: map-get(
+    $map: (
+      $theme
+    ),
+    $key: primary
+  );
+  .card-content {
+    max-width: 400px;
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+    border: 1px solid mat-color($primary);
+  }
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0.5rem;
+}

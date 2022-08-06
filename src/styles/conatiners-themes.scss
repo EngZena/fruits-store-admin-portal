@@ -1,0 +1,5 @@
+@import '../app/containers/customers/customers.component.scss';
+
+@mixin conatiners-themes($theme) {
+  @include customer-card-theme($theme);
+}
