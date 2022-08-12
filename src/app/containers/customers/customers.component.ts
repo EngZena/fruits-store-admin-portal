@@ -9,17 +9,26 @@ import { adminEmail } from '@containers/login-page/admin.data';
 })
 export class CustomersComponent {
   customersList: any[] = [];
-  customersDataExist = false;
+  customersDataExist: boolean = false;
+  showDetails: boolean = false;
   constructor(private route: ActivatedRoute) {
     this.getCustomersData();
   }
 
   getCustomersData() {
     this.route.data.subscribe((data: any) => {
+      let result: any[] = [];
       if (data.customersData.length > 0) {
-        this.customersList = [...data.customersData];
+        result = [...data.customersData];
         this.removeAdminFromCustomersList();
         this.customersDataExist = true;
+        result.forEach(element => {
+          element = {
+            ...element,
+            showDetails: false,
+          };
+          this.customersList.push(element);
+        });
       }
     });
   }
@@ -28,5 +37,10 @@ export class CustomersComponent {
     this.customersList = this.customersList.filter(
       data => data.email !== adminEmail
     );
+  }
+
+  toggleShowDetails(index: number) {
+    this.customersList[index].showDetails =
+      !this.customersList[index].showDetails;
   }
 }
