@@ -1,3 +1,4 @@
+import { ComponentsModule } from '@components/components.module';
 import { CustomersComponent } from './customers/customers.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,7 @@ const declaredContainers = [
 ];
 @NgModule({
   declarations: [...declaredContainers],
-  imports: [SharedModule],
+  imports: [SharedModule, ComponentsModule],
   exports: [...declaredContainers],
 })
 export class ContainersModule {}

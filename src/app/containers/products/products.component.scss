@@ -1,0 +1,40 @@
+@import '../../../assets/scss/constants.scss';
+h3 {
+  margin-left: 25px;
+  color: $blue_color;
+}
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+button {
+  color: $white_color;
+  border: 0;
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+.btnPrimary {
+  filter: $pink_color_filter;
+}
+.btnSecondary {
+  filter: $green_color_filter;
+}
+.icon {
+  width: 30px;
+}
+.loading {
+  text-align: center;
+  margin-top: 10%;
+}
