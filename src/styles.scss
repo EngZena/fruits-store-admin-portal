@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/material-theme.scss';
-
+@import './assets/scss/constants.scss';
 html,
 body {
   height: 100%;
@@ -8,4 +8,25 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+button {
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+.primary {
+  background-color: $pink_color;
+  border-color: $pink_color;
+  color: $white_color;
+}
+.secondary {
+  background-color: $green_color;
+  border-color: $green_color;
+  color: $white_color;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid $red_error_color;
 }
