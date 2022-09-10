@@ -1,4 +1,6 @@
+import { CardComponent } from './card/card.component';
 import { LayoutComponent } from './layout/layout.component';
+import { LoadingComponent } from './loading/loading.component';
 import { NgModule } from '@angular/core';
 import { NoInternetComponent } from './no-internet/no-internet.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -8,6 +10,8 @@ const declaredComponents = [
   PageNotFoundComponent,
   NoInternetComponent,
   LayoutComponent,
+  LoadingComponent,
+  CardComponent,
 ];
 
 @NgModule({
