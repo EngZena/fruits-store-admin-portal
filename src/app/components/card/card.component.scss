@@ -1,0 +1,14 @@
+@import '../../../assets/scss/constants.scss';
+.card {
+  border: 2px $blue_color dashed;
+  width: fit-content;
+  padding: 5px;
+  margin: 10px;
+}
+img {
+  width: 250px;
+  height: 250px;
+}
+.description {
+  text-align: center;
+}

@@ -1,3 +1,4 @@
+import { CardComponent } from './card/card.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoadingComponent } from './loading/loading.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,7 @@ const declaredComponents = [
   NoInternetComponent,
   LayoutComponent,
   LoadingComponent,
+  CardComponent,
 ];
 
 @NgModule({
