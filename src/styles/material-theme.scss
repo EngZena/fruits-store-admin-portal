@@ -1,5 +1,6 @@
 @import '@angular/material/theming';
 @import './conatiners-themes.scss';
+@import './components-themes.scss';
 
 @include mat-core();
 
@@ -24,6 +25,7 @@ $theme: map_merge(
 
 @include angular-material-theme($theme);
 @include conatiners-themes($theme);
+@include components-themes($theme);
 
 .dark-theme {
   color: $light-primary-text;
@@ -34,4 +36,5 @@ $theme: map_merge(
 
   @include angular-material-theme($dark-theme);
   @include conatiners-themes($dark-theme);
+  @include components-themes($dark-theme);
 }

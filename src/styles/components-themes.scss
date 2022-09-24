@@ -1,0 +1,5 @@
+@import '../app/components/card/card.component.scss';
+
+@mixin components-themes($theme) {
+  @include card-border-theme($theme);
+}
