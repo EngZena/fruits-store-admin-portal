@@ -1,7 +1,19 @@
+@import '@angular/material/theming';
 @import '../../../assets/scss/constants.scss';
+
+@mixin product-header-theme($theme) {
+  $primary: map-get($map: ($theme),$key: primary);
+  .header {
+    color: mat-color($primary);
+  }
+}
+
+.products-container{
+  margin-top: 2rem;
+}
+
 h3 {
   margin-left: 25px;
-  color: $blue_color;
 }
 .cardContainer {
   display: flex;
