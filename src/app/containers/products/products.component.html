@@ -1,9 +1,9 @@
 <div *ngIf="isLoading">
   <app-loading></app-loading>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading" class="products-container">
   <div *ngIf="summerFruitsPage.length > 0">
-    <h3>Summer Fruits</h3>
+    <h3 class="header">Summer Fruits</h3>
     <div class="cardContainer">
       <app-card
         *ngFor="let item of summerFruitsPage"
@@ -42,7 +42,7 @@
   </div>
 
   <div *ngIf="winterFruitsPage.length > 0">
-    <h3>Winter Fruits</h3>
+    <h3 class="header">Winter Fruits</h3>
 
     <div class="cardContainer">
       <app-card
