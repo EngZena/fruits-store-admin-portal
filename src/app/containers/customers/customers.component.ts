@@ -20,7 +20,6 @@ export class CustomersComponent {
       let result: any[] = [];
       if (data.customersData.length > 0) {
         result = [...data.customersData];
-        this.removeAdminFromCustomersList();
         this.customersDataExist = true;
         result.forEach(element => {
           element = {
@@ -29,6 +28,7 @@ export class CustomersComponent {
           };
           this.customersList.push(element);
         });
+        this.removeAdminFromCustomersList();
       }
     });
   }
