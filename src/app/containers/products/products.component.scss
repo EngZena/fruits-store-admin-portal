@@ -8,7 +8,7 @@
   }
 }
 
-.products-container{
+.products-container {
   margin-top: 2rem;
 }
 
@@ -25,18 +25,19 @@ h3 {
   justify-content: space-evenly;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-button {
-  color: $white_color;
-  border: 0;
-  background: transparent;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  img {
-    height: fit-content;
+  button {
+    color: $white_color;
+    border: 0;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    img {
+      height: fit-content;
+    }
   }
 }
+
 button:disabled {
   cursor: not-allowed;
 }
