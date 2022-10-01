@@ -10,7 +10,7 @@ import { ProductsComponent } from '@containers/products/products.component';
 import { ProfileComponent } from '@containers/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: LoginPageComponent },
+  { path: 'login', component: LoginPageComponent },
   {
     path: 'customers',
     canActivate: [AuthGuard],
