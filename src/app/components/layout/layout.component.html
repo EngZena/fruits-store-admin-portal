@@ -2,6 +2,11 @@
   <mat-drawer #drawer mode="side">
     <div fxLayout="column" fxLayoutGap="30px">
       <div (click)="drawer.toggle()" class="item menu-item">
+        <a routerLink="products">
+          <span>Products</span>
+        </a>
+      </div>
+      <div (click)="drawer.toggle()" class="item menu-item">
         <a routerLink="customers">
           <span>Customers</span>
         </a>
@@ -9,11 +14,6 @@
       <div (click)="drawer.toggle()" class="item menu-item">
         <a routerLink="orders">
           <span>Orders</span>
-        </a>
-      </div>
-      <div (click)="drawer.toggle()" class="item menu-item">
-        <a routerLink="products">
-          <span>Products</span>
         </a>
       </div>
       <div (click)="drawer.toggle()" class="item menu-item">
@@ -41,6 +41,11 @@
         fxFlexOffset="30px"
         class="flex-container">
         <div>
+          <a routerLink="products" class="item">
+            <span>Products</span>
+          </a>
+        </div>
+        <div>
           <a routerLink="customers" class="item">
             <span>Customers</span>
           </a>
@@ -48,11 +53,6 @@
         <div>
           <a routerLink="orders" class="item">
             <span>Orders</span>
-          </a>
-        </div>
-        <div>
-          <a routerLink="products" class="item">
-            <span>Products</span>
           </a>
         </div>
       </div>

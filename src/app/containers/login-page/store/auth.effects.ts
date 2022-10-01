@@ -111,7 +111,7 @@ export class AuthEffects {
     tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
       if (authSuccessAction.payload.redirect) {
         if (authSuccessAction.payload.email === adminEmail) {
-          this.router.navigate(['/customers']);
+          this.router.navigate(['/products']);
         }
       }
     })
@@ -165,7 +165,7 @@ export class AuthEffects {
       this.authService.clearLogoutTimer();
       localStorage.removeItem('userData');
       this.cookiesService.deleteAll();
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     })
   );
 }
