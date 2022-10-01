@@ -1,0 +1,7 @@
+@import '../app/containers/customers/customers.component.scss';
+@import '../app/containers/products/products.component.scss';
+
+@mixin conatiners-themes($theme) {
+  @include customer-card-theme($theme);
+  @include product-header-theme($theme);
+}

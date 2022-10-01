@@ -1,0 +1,91 @@
+<mat-drawer-container [hasBackdrop]="true" fxFlexFill>
+  <mat-drawer #drawer mode="side">
+    <div fxLayout="column" fxLayoutGap="30px">
+      <div (click)="drawer.toggle()" class="item menu-item">
+        <a routerLink="customers">
+          <span>Customers</span>
+        </a>
+      </div>
+      <div (click)="drawer.toggle()" class="item menu-item">
+        <a routerLink="orders">
+          <span>Orders</span>
+        </a>
+      </div>
+      <div (click)="drawer.toggle()" class="item menu-item">
+        <a routerLink="products">
+          <span>Products</span>
+        </a>
+      </div>
+      <div (click)="drawer.toggle()" class="item menu-item">
+        <a routerLink="profile">
+          <span>Profile</span>
+        </a>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content fxLayout="column" fxLayoutAlign="start center">
+    <mat-toolbar color="primary">
+      <button
+        mat-icon-button
+        aria-label="admin portal menu"
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Admin Portal</span>
+      <span class="buttons-spacer"></span>
+      <div
+        fxShow="true"
+        fxHide.lt-md="true"
+        fxLayout="row"
+        fxLayoutGap="25px"
+        fxFlexOffset="30px"
+        class="flex-container">
+        <div>
+          <a routerLink="customers" class="item">
+            <span>Customers</span>
+          </a>
+        </div>
+        <div>
+          <a routerLink="orders" class="item">
+            <span>Orders</span>
+          </a>
+        </div>
+        <div>
+          <a routerLink="products" class="item">
+            <span>Products</span>
+          </a>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        aria-label="toggle dark_mode"
+        (click)="toggleDarkTheme()"
+        fxFlexOffset="20px">
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        aria-label="open person menu"
+        [matMenuTriggerFor]="belowMenu">
+        <mat-icon>person</mat-icon>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div class="user-menu">
+              <a routerLink="profile" class="item">
+                <span>Profile</span>
+              </a>
+            </div>
+            <div class="user-menu">
+              <a routerLink="" (click)="logout()" class="item">
+                <span>Logout</span>
+              </a>
+            </div>
+          </div>
+        </mat-menu>
+      </button>
+    </mat-toolbar>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

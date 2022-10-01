@@ -1,0 +1,22 @@
+@import '@angular/material/theming';
+@import '../../../assets/scss/constants.scss';
+
+@mixin card-border-theme($theme) {
+  $primary: map-get($map: ($theme),$key: primary);
+  .card-border {
+    border: 2px mat-color($primary) dashed;
+  }
+}
+
+.card {
+  width: fit-content;
+  padding: 5px;
+  margin: 10px;
+}
+img {
+  width: 250px;
+  height: 250px;
+}
+.description {
+  text-align: center;
+}

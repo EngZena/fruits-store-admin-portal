@@ -1,0 +1,56 @@
+@import '@angular/material/theming';
+@import '../../../assets/scss/constants.scss';
+
+@mixin product-header-theme($theme) {
+  $primary: map-get($map: ($theme),$key: primary);
+  .header {
+    color: mat-color($primary);
+  }
+}
+
+.products-container {
+  margin-top: 2rem;
+}
+
+h3 {
+  margin-left: 25px;
+}
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  button {
+    color: $white_color;
+    border: 0;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    img {
+      height: fit-content;
+    }
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+.btnPrimary {
+  filter: $pink_color_filter;
+}
+.btnSecondary {
+  filter: $green_color_filter;
+}
+.icon {
+  width: 30px;
+}
+.loading {
+  text-align: center;
+  margin-top: 10%;
+}

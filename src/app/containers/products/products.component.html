@@ -1,0 +1,83 @@
+<div *ngIf="isLoading">
+  <app-loading></app-loading>
+</div>
+<div *ngIf="!isLoading" class="products-container">
+  <div *ngIf="summerFruitsPage.length > 0">
+    <h3 class="header">Summer Fruits</h3>
+    <div class="cardContainer">
+      <app-card
+        *ngFor="let item of summerFruitsPage"
+        name="{{ item.name }}"
+        price="{{ item.price }}"
+        imgName="{{ item.image }}"
+        category="summerFruits">
+      </app-card>
+    </div>
+    <div>
+      <div class="btnContainer">
+        <div>
+          <button
+            class="btnSecondary"
+            (click)="
+              PreviousPage(currentSummerPage, summerFruitsArray, 'summer')
+            "
+            [disabled]="currentSummerPage === 1">
+            <img
+              src="../../../assets/svg/arrow-left-circle-fill.svg"
+              class="icon" />
+          </button>
+        </div>
+        <div>
+          <button
+            class="btnPrimary"
+            (click)="NextPage(currentSummerPage, summerFruitsArray, 'summer')"
+            [disabled]="currentSummerPage === 3">
+            <img
+              src="../../../assets/svg/arrow-right-circle-fill.svg"
+              class="icon" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="winterFruitsPage.length > 0">
+    <h3 class="header">Winter Fruits</h3>
+
+    <div class="cardContainer">
+      <app-card
+        *ngFor="let item of winterFruitsPage"
+        name="{{ item.name }}"
+        price="{{ item.price }}"
+        imgName="{{ item.image }}"
+        category="winterFruits">
+      </app-card>
+    </div>
+    <div>
+      <div class="btnContainer">
+        <div>
+          <button
+            class="btnSecondary"
+            (click)="
+              PreviousPage(currentWinterPage, winterFruitsArray, 'winter')
+            "
+            [disabled]="currentWinterPage === 1">
+            <img
+              src="../../../assets/svg/arrow-left-circle-fill.svg"
+              class="icon" />
+          </button>
+        </div>
+        <div>
+          <button
+            class="btnPrimary"
+            (click)="NextPage(currentWinterPage, winterFruitsArray, 'winter')"
+            [disabled]="currentWinterPage === 3">
+            <img
+              src="../../../assets/svg/arrow-right-circle-fill.svg"
+              class="icon" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

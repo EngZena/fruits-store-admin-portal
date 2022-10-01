@@ -1,0 +1,35 @@
+.buttons-spacer {
+  flex: 1 1 auto;
+}
+
+mat-drawer {
+  padding-top: 65px;
+  .menu-item {
+    text-align: center;
+    margin: auto 20px;
+  }
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+}
+
+mat-drawer-content {
+  min-height: 100vh;
+}
+
+.user-menu {
+  margin: 10px;
+}
+
+.nav {
+  cursor: pointer;
+}
+.content {
+  margin: auto;
+}
