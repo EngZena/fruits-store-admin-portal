@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { CoreModule } from '@core/Core.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,7 +36,17 @@ const angularModules = [
 
 @NgModule({
   declarations: [],
-  imports: [...materialModules, ...angularModules, FlexLayoutModule],
-  exports: [...materialModules, ...angularModules, FlexLayoutModule],
+  imports: [
+    ...materialModules,
+    ...angularModules,
+    FlexLayoutModule,
+    CoreModule,
+  ],
+  exports: [
+    ...materialModules,
+    ...angularModules,
+    FlexLayoutModule,
+    CoreModule,
+  ],
 })
 export class SharedModule {}
