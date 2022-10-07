@@ -1,7 +1,11 @@
 import * as productsActionTypes from './products.action-types';
 
+import {
+  AddNewProduct,
+  SetAllProducts,
+  productsActions,
+} from './products.actions';
 import { FruitType, ProductsModel } from '@core/models/FruitsModel';
-import { SetAllProducts, productsActions } from './products.actions';
 
 export interface productsState {
   productsListItems: ProductsModel[];
@@ -46,6 +50,15 @@ export const getAllProducts = (state: productsState) => {
   return state;
 };
 
+export const addNewProduct = (action: AddNewProduct, state: productsState) => {
+  state = {
+    ...state,
+    productsListItems: [...state.productsListItems, action.payload],
+    total: state.total + 1,
+  };
+  return state;
+};
+
 export const productsReducers = (
   state = initialState,
   action: productsActions | any
@@ -55,6 +68,8 @@ export const productsReducers = (
       return setAllProducts(action, state);
     case productsActionTypes.GET_ALL_PRODUCTS:
       return getAllProducts(state);
+    case productsActionTypes.ADD_NEW_PRODUCTS:
+      return addNewProduct(action, state);
     default:
       return state;
   }

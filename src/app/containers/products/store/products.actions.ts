@@ -13,4 +13,9 @@ export class SetAllProducts implements Action {
   constructor(public payload: ProductsModel[]) {}
 }
 
-export type productsActions = GetAllProducts | SetAllProducts;
+export class AddNewProduct implements Action {
+  readonly type = ProductsActionTypes.ADD_NEW_PRODUCTS;
+  constructor(public payload: ProductsModel) {}
+}
+
+export type productsActions = GetAllProducts | SetAllProducts | AddNewProduct;
