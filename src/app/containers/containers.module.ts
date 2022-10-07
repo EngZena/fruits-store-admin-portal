@@ -1,3 +1,4 @@
+import { AddNewProductComponent } from './products/AddNewProduct/addNewProduct.component';
 import { ComponentsModule } from '@components/components.module';
 import { CustomersComponent } from './customers/customers.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -10,6 +11,7 @@ const declaredContainers = [
   LoginPageComponent,
   CustomersComponent,
   ProductsComponent,
+  AddNewProductComponent,
   ProfileComponent,
 ];
 @NgModule({
