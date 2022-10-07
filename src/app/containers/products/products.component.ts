@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.setAllFruits(summerFruits, FruitType.summerFruits);
         this.setAllFruits(winterFruits, FruitType.winterFruits);
         this.store.dispatch(
-          new fromProductsActions.SetAllProducts(this.allFruits)
+          new fromProductsActions.InitializeProducts(this.allFruits)
         );
       })
     );

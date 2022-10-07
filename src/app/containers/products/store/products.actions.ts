@@ -8,9 +8,17 @@ export class GetAllProducts implements Action {
   constructor() {}
 }
 
-export class SetAllProducts implements Action {
-  readonly type = ProductsActionTypes.SET_ALL_PRODUCTS;
+export class InitializeProducts implements Action {
+  readonly type = ProductsActionTypes.INITIALIZE_PRODUCTS;
   constructor(public payload: ProductsModel[]) {}
 }
 
-export type productsActions = GetAllProducts | SetAllProducts;
+export class AddNewProduct implements Action {
+  readonly type = ProductsActionTypes.ADD_NEW_PRODUCTS;
+  constructor(public payload: ProductsModel) {}
+}
+
+export type productsActions =
+  | GetAllProducts
+  | InitializeProducts
+  | AddNewProduct;

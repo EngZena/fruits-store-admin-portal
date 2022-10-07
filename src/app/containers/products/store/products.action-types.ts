@@ -1,3 +1,4 @@
+export const INITIALIZE_PRODUCTS = '[PRODUCTS] initialize products';
 export const SET_ALL_PRODUCTS = '[PRODUCTS] set all products';
 export const GET_ALL_PRODUCTS = '[PRODUCTS] get all products';
 export const ADD_NEW_PRODUCTS = '[PRODUCTS] add new products';
