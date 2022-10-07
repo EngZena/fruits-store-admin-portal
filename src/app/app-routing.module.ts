@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AddNewProductComponent } from '@containers/products/AddNewProduct/addNewProduct.component';
 import { AuthGuard } from '@containers/login-page/auth.guard';
 import { CustomersComponent } from '@containers/customers/customers.component';
 import { CustomersResolver } from '@core/services/resolver/customers.resolver';
@@ -17,7 +18,20 @@ const routes: Routes = [
     component: CustomersComponent,
     resolve: { customersData: CustomersResolver },
   },
-  { path: 'products', canActivate: [AuthGuard], component: ProductsComponent },
+  {
+    path: 'products',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: ProductsComponent,
+      },
+      {
+        path: 'add-new-product',
+        component: AddNewProductComponent,
+      },
+    ],
+  },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
