@@ -2,6 +2,7 @@ import * as fromApp from '@store/app.reducer';
 import * as fromProductsActions from '@containers/products/store/products.actions';
 import * as paginationFunctions from '../../core/services/utils';
 
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FruitType,
@@ -38,7 +39,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private summerFruitsService: SummerFruitsService,
     private winterFruitsService: WinterFruitsService,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -117,6 +120,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     season === 'winter'
       ? (this.currentWinterPage = result!.pageNumber)
       : (this.currentSummerPage = result!.pageNumber);
+  }
+
+  addNewProduct() {
+    this.router.navigate(['add-new-product'], { relativeTo: this.route });
   }
 
   ngOnDestroy(): void {
