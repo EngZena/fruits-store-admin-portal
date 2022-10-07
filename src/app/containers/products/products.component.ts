@@ -1,8 +1,13 @@
 import * as fromApp from '@store/app.reducer';
+import * as fromProductsActions from '@containers/products/store/products.actions';
 import * as paginationFunctions from '../../core/services/utils';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FruitType, FruitsModel } from '@core/models/FruitsModel';
+import {
+  FruitType,
+  FruitsModel,
+  ProductsModel,
+} from '@core/models/FruitsModel';
 import { Subscription, forkJoin } from 'rxjs';
 
 import { Store } from '@ngrx/store';
@@ -28,6 +33,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   winterFruitsPage: FruitsModel[] = [];
   summerFruits = FruitType.summerFruits;
   winterFruits = FruitType.winterFruits;
+  allFruits: ProductsModel[] = [];
 
   constructor(
     private summerFruitsService: SummerFruitsService,
@@ -72,8 +78,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
           4,
           1
         );
+        this.setAllFruits(summerFruits, FruitType.summerFruits);
+        this.setAllFruits(winterFruits, FruitType.winterFruits);
+        this.store.dispatch(
+          new fromProductsActions.SetAllProducts(this.allFruits)
+        );
       })
     );
+  }
+
+  setAllFruits(array: FruitsModel[], type: FruitType) {
+    array.forEach(element => {
+      this.allFruits.push({
+        id: element.id,
+        name: element.name,
+        image: element.image,
+        price: element.price,
+        fruitType: type,
+      });
+    });
   }
 
   NextPage(currentPage: number, fullArray: FruitsModel[], season: string) {
