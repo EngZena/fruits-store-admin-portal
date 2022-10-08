@@ -1,4 +1,4 @@
-import { AddNewProductComponent } from './products/AddNewProduct/addNewProduct.component';
+import { AddNewProductComponent } from './products/AddNewProduct/add-new-product.component';
 import { ComponentsModule } from '@components/components.module';
 import { CustomersComponent } from './customers/customers.component';
 import { LoginPageComponent } from './login-page/login-page.component';
