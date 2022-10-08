@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AddNewProductComponent } from '@containers/products/AddNewProduct/addNewProduct.component';
+import { AddNewProductComponent } from '@containers/products/AddNewProduct/add-new-product.component';
 import { AuthGuard } from '@containers/login-page/auth.guard';
 import { CustomersComponent } from '@containers/customers/customers.component';
 import { CustomersResolver } from '@core/services/resolver/customers.resolver';
