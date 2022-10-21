@@ -27,6 +27,3 @@ button:disabled {
   border-color: $green_color;
   color: $white_color;
 }
-input.ng-invalid.ng-touched {
-  border: 1px solid $red_error_color;
-}
