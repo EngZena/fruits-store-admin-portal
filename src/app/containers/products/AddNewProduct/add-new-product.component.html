@@ -1,1 +1,102 @@
-<h1>Add New Product Component</h1>
+<div
+  class="content"
+  fxLayout="row"
+  fxFlexFill
+  fxLayoutGap="2rem"
+  fxLayoutGap.xs="0px"
+  class="product-form">
+  <div fxLayout="column" fxFlex="50">
+    <form fxFlex (ngSubmit)="addNewFruit()" [formGroup]="productForm">
+      <div
+        fxLayout="column"
+        fxFlex="50"
+        fxLayoutGap="2rem"
+        fxLayoutGap.xs="0px">
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Fruit name"
+              required />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Price</mat-label>
+            <input
+              (keypress)="keyPressNumbersDecimal($event)"
+              matInput
+              formControlName="price"
+              placeholder="Fruit price"
+              type="number" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Fruit Type</mat-label>
+            <mat-select formControlName="FruitType" name="food">
+              <mat-option
+                *ngFor="let fruit of FruitsTypes"
+                [value]="fruit.value">
+                {{ fruit.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Image Name</mat-label>
+            <input
+              readonly="true"
+              matInput
+              formControlName="imageName"
+              placeholder="Image Name" />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column">
+          <input
+            #imageInput
+            type="file"
+            (change)="selectFile(imageInput)"
+            accept=".png, .jpg"
+            [fxHide]="true"
+            id="fileInput" />
+          <div>
+            <button
+              color="accent"
+              mat-raised-button
+              type="button"
+              (click)="openInput()">
+              Upload Image
+            </button>
+          </div>
+        </div>
+        <div class="submit-button" fxLayout="row" fxLayout.xs="column">
+          <button color="primary" mat-raised-button type="submit">
+            Submit Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    fxLayout="column"
+    fxFlex="50"
+    [fxHide.xs]="true"
+    [fxHide.sm]="true"
+    [fxHide.md]="true">
+    <p
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayoutGap="2rem"
+      fxLayoutGap.xs="0px">
+      {{ imageMsg }}
+    </p>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start">
+      <img [src]="imageURL" *ngIf="imageURL" alt="imageURL" />
+    </div>
+  </div>
+</div>
