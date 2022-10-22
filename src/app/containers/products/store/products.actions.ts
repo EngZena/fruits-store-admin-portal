@@ -1,7 +1,7 @@
 import * as ProductsActionTypes from './products.action-types';
 
 import { Action } from '@ngrx/store';
-import { ProductModel } from '@core/models/FruitsModel';
+import { ProductModel } from '@core/models/FruitModel';
 
 export class GetAllProducts implements Action {
   readonly type = ProductsActionTypes.GET_ALL_PRODUCTS;

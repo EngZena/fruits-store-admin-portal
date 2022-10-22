@@ -1,7 +1,7 @@
 import { Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { FruitsModel } from '@core/models/FruitsModel';
+import { FruitModel } from '@core/models/FruitModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { baseURL } from './http-instanse';
@@ -15,9 +15,9 @@ export class WinterFruitsService {
   constructor(private http: HttpClient) {}
 
   getWinterFruits() {
-    return this.http.get<FruitsModel[]>(`${baseURL}/winterFruits.json`).pipe(
+    return this.http.get<FruitModel[]>(`${baseURL}/winterFruits.json`).pipe(
       map(responseData => {
-        const winterFruits: FruitsModel[] = [];
+        const winterFruits: FruitModel[] = [];
         responseData.map(item => {
           winterFruits.push(item);
         });

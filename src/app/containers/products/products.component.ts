@@ -4,7 +4,7 @@ import * as paginationFunctions from '../../core/services/utils';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FruitType, FruitsModel, ProductModel } from '@core/models/FruitsModel';
+import { FruitModel, FruitType, ProductModel } from '@core/models/FruitModel';
 import { Subscription, forkJoin } from 'rxjs';
 
 import { Store } from '@ngrx/store';
@@ -18,16 +18,16 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  summerFruitsArray: FruitsModel[] = [];
-  winterFruitsArray: FruitsModel[] = [];
+  summerFruitsArray: FruitModel[] = [];
+  winterFruitsArray: FruitModel[] = [];
   isLoading: boolean = false;
   errorMessage: String = '';
   private errorSummerSub: Subscription = new Subscription();
   private errorWinterSub: Subscription = new Subscription();
   currentSummerPage: number = 1;
   currentWinterPage: number = 1;
-  summerFruitsPage: FruitsModel[] = [];
-  winterFruitsPage: FruitsModel[] = [];
+  summerFruitsPage: FruitModel[] = [];
+  winterFruitsPage: FruitModel[] = [];
   summerFruits = FruitType.summerFruits;
   winterFruits = FruitType.winterFruits;
   allFruits: ProductModel[] = [];
@@ -86,7 +86,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
   }
 
-  setAllFruits(array: FruitsModel[], type: FruitType) {
+  setAllFruits(array: FruitModel[], type: FruitType) {
     array.forEach(element => {
       this.allFruits.push({
         id: element.id,
@@ -99,7 +99,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  NextPage(currentPage: number, fullArray: FruitsModel[], season: string) {
+  NextPage(currentPage: number, fullArray: FruitModel[], season: string) {
     const result = paginationFunctions.NextPage(currentPage, fullArray);
     season === 'winter'
       ? (this.winterFruitsPage = result!.arrayData)
@@ -109,7 +109,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       : (this.currentSummerPage = result!.pageNumber);
   }
 
-  PreviousPage(currentPage: number, fullArray: FruitsModel[], season: string) {
+  PreviousPage(currentPage: number, fullArray: FruitModel[], season: string) {
     const result = paginationFunctions.PreviousPage(currentPage, fullArray);
     season === 'winter'
       ? (this.winterFruitsPage = result!.arrayData)

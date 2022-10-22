@@ -1,4 +1,4 @@
-export interface FruitsModel {
+export interface FruitModel {
   id: string;
   name: string;
   image: string;

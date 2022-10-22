@@ -1,7 +1,7 @@
-import { FruitsModel } from '@core/models/FruitsModel';
+import { FruitModel } from '@core/models/FruitModel';
 
 export const pagination = (
-  array: FruitsModel[],
+  array: FruitModel[],
   page_size: number,
   page_number: number
 ) => {
@@ -10,7 +10,7 @@ export const pagination = (
   );
 };
 
-export const NextPage = (currentPage: number, fullArray: FruitsModel[]) => {
+export const NextPage = (currentPage: number, fullArray: FruitModel[]) => {
   if (currentPage > 0 && currentPage < 4) {
     const page = currentPage + 1;
     let res = pagination(fullArray, 4, page);
@@ -22,7 +22,7 @@ export const NextPage = (currentPage: number, fullArray: FruitsModel[]) => {
   return;
 };
 
-export const PreviousPage = (currentPage: number, fullArray: FruitsModel[]) => {
+export const PreviousPage = (currentPage: number, fullArray: FruitModel[]) => {
   if (currentPage > 1 && currentPage < 4) {
     const page = currentPage - 1;
     let res = pagination(fullArray, 4, page);
