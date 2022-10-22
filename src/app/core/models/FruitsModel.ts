@@ -14,6 +14,7 @@ export interface ProductsModel {
   id: string;
   name: string;
   image: string;
+  imageName: string;
   price: number;
   fruitType: FruitType;
 }

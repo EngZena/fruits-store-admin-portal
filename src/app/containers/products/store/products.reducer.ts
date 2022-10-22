@@ -5,7 +5,8 @@ import {
   InitializeProducts,
   productsActions,
 } from './products.actions';
-import { FruitType, ProductsModel } from '@core/models/FruitsModel';
+
+import { ProductsModel } from '@core/models/FruitsModel';
 
 export interface productsState {
   productsListItems: ProductsModel[];
@@ -13,15 +14,7 @@ export interface productsState {
 }
 
 const initialState: productsState = {
-  productsListItems: [
-    {
-      id: 'null',
-      name: 'null',
-      image: 'null',
-      price: 0,
-      fruitType: FruitType.summerFruits,
-    },
-  ],
+  productsListItems: [],
   total: 0,
 };
 
@@ -35,6 +28,7 @@ const initializeProducts = (
       id: Math.random().toString(),
       name: product.name,
       image: product.image,
+      imageName: product.imageName,
       price: product.price,
       fruitType: product.fruitType,
     };
