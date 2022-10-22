@@ -6,7 +6,7 @@ import {
   productsActions,
 } from './products.actions';
 
-import { ProductModel } from '@core/models/FruitsModel';
+import { ProductModel } from '@core/models/FruitModel';
 
 export interface productsState {
   productsListItems: ProductModel[];

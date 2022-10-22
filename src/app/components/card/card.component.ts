@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { FruitType } from '@core/models/FruitsModel';
+import { FruitType } from '@core/models/FruitModel';
 
 @Component({
   selector: 'app-card',
