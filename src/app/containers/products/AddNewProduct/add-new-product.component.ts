@@ -1,6 +1,10 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import * as fromApp from '@store/app.reducer';
+import * as fromProductsActions from '@containers/products/store/products.actions';
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-add-new-poduct-component',
@@ -25,7 +29,8 @@ export class AddNewProductComponent {
     { value: 'summerFruits', viewValue: 'Summer Fruits' },
     { value: 'winterFruits', viewValue: 'Winter Fruits' },
   ];
-  constructor() {}
+  @ViewChild('formDirective') private formDirective!: NgForm;
+  constructor(private store: Store<fromApp.AppState>) {}
 
   keyPressNumbersDecimal(event: KeyboardEvent) {
     if (this.invalidChars.includes(event.key)) {
@@ -61,5 +66,17 @@ export class AddNewProductComponent {
     };
   }
 
-  addNewFruit() {}
+  addNewFruit() {
+    if (this.productForm.valid) {
+      this.store.dispatch(
+        new fromProductsActions.AddNewProduct({
+          ...this.productForm.getRawValue(),
+          id: Math.random().toFixed(3).toString(),
+        })
+      );
+      this.formDirective.resetForm();
+      this.imageMsg = null;
+      this.imageURL = null;
+    }
+  }
 }

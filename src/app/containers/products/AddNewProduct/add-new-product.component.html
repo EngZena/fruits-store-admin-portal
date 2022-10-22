@@ -6,7 +6,11 @@
   fxLayoutGap.xs="0px"
   class="product-form">
   <div fxLayout="column" fxFlex="50">
-    <form fxFlex (ngSubmit)="addNewFruit()" [formGroup]="productForm">
+    <form
+      fxFlex
+      (ngSubmit)="addNewFruit()"
+      [formGroup]="productForm"
+      #formDirective="ngForm">
       <div
         fxLayout="column"
         fxFlex="50"
