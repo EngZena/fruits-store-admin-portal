@@ -10,7 +10,7 @@ export class FruitType {
   public static winterFruits: string = 'WINTER_FRUITS';
 }
 
-export interface ProductsModel {
+export interface ProductModel {
   id: string;
   name: string;
   image: string;

@@ -6,10 +6,10 @@ import {
   productsActions,
 } from './products.actions';
 
-import { ProductsModel } from '@core/models/FruitsModel';
+import { ProductModel } from '@core/models/FruitsModel';
 
 export interface productsState {
-  productsListItems: ProductsModel[];
+  productsListItems: ProductModel[];
   total: number;
 }
 
@@ -22,9 +22,9 @@ const initializeProducts = (
   action: InitializeProducts,
   state: productsState
 ) => {
-  const productsList: ProductsModel[] = [];
+  const productsList: ProductModel[] = [];
   action.payload.forEach(product => {
-    let productItem: ProductsModel = {
+    let productItem: ProductModel = {
       id: Math.random().toString(),
       name: product.name,
       image: product.image,
