@@ -95,6 +95,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.allFruits.push({
         id: element.id,
         name: element.name,
+        imageName: element.image,
         image: element.image,
         price: element.price,
         fruitType: type,
