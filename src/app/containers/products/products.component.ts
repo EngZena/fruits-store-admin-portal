@@ -4,11 +4,7 @@ import * as paginationFunctions from '../../core/services/utils';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FruitType,
-  FruitsModel,
-  ProductsModel,
-} from '@core/models/FruitsModel';
+import { FruitType, FruitsModel, ProductModel } from '@core/models/FruitsModel';
 import { Subscription, forkJoin } from 'rxjs';
 
 import { Store } from '@ngrx/store';
@@ -34,7 +30,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   winterFruitsPage: FruitsModel[] = [];
   summerFruits = FruitType.summerFruits;
   winterFruits = FruitType.winterFruits;
-  allFruits: ProductsModel[] = [];
+  allFruits: ProductModel[] = [];
 
   constructor(
     private summerFruitsService: SummerFruitsService,
