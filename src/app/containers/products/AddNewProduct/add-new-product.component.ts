@@ -62,7 +62,9 @@ export class AddNewProductComponent {
       this.imageMsg = 'Image uploaded successfully';
       this.imageURL = reader.result;
       this.productForm.get('image')?.setValue(reader.result);
-      this.productForm.get('imageName')?.setValue(imageInput.files[0].name);
+      this.productForm
+        .get('imageName')
+        ?.setValue(imageInput.files[0].name.toLowerCase());
     };
   }
 
