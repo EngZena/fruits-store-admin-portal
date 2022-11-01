@@ -15,7 +15,7 @@ export class AddNewProductComponent {
   productForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
-    FruitType: new FormControl(null, [Validators.required]),
+    fruitType: new FormControl(null, [Validators.required]),
     image: new FormControl(null, [Validators.required]),
     imageName: new FormControl(null, [Validators.required]),
   });
@@ -26,8 +26,8 @@ export class AddNewProductComponent {
   imageMsg: any;
 
   FruitsTypes = [
-    { value: 'summerFruits', viewValue: 'Summer Fruits' },
-    { value: 'winterFruits', viewValue: 'Winter Fruits' },
+    { value: 'SUMMER_FRUITS', viewValue: 'Summer Fruits' },
+    { value: 'WINTER_FRUITS', viewValue: 'Winter Fruits' },
   ];
   @ViewChild('formDirective') private formDirective!: NgForm;
   constructor(private store: Store<fromApp.AppState>) {}
