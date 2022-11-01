@@ -3,6 +3,7 @@ export interface FruitModel {
   name: string;
   image: string;
   price: number;
+  imageName: string;
 }
 
 export class FruitType {

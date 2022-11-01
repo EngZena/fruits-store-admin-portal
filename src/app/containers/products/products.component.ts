@@ -6,11 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FruitModel, FruitType, ProductModel } from '@core/models/FruitModel';
 import { Subscription, forkJoin } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import { SummerFruitsService } from '@core/services/apis/SummerFruits.service';
 import { WinterFruitsService } from '@core/services/apis/WinterFruits.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -31,7 +31,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   summerFruits = FruitType.summerFruits;
   winterFruits = FruitType.winterFruits;
   allFruits: ProductModel[] = [];
-
+  summerFruitsPages: number = 4;
+  winterFruitsPages: number = 4;
+  firstRender: boolean = true;
   constructor(
     private summerFruitsService: SummerFruitsService,
     private winterFruitsService: WinterFruitsService,
@@ -41,6 +43,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.store
+      .select('products')
+      .pipe(take(1))
+      .subscribe(data => {
+        if (!data.hasLoaded) {
+          this.isLoading = true;
+          let value$ = this.loadData();
+          value$.subscribe(() => {
+            this.store.dispatch(
+              new fromProductsActions.InitializeProducts(this.allFruits)
+            );
+            this.isLoading = false;
+          });
+        }
+      });
+
     this.errorSummerSub = this.summerFruitsService.requestError.subscribe(
       errorMessageService => {
         this.errorMessage = errorMessageService;
@@ -51,11 +69,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.errorMessage = errorMessageService;
       }
     );
-    this.isLoading = true;
-
-    let value$ = this.loadData();
-    value$.subscribe(() => {
-      this.isLoading = false;
+    this.store.select('products').subscribe(data => {
+      this.summerFruitsArray = data.summerFruits;
+      this.winterFruitsArray = data.winterFruits;
+      this.summerFruitsPages = paginationFunctions.getTotalNumberOfPages(
+        data.summerFruits.length
+      );
+      this.winterFruitsPages = paginationFunctions.getTotalNumberOfPages(
+        data.winterFruits.length
+      );
+      this.summerFruitsPage = paginationFunctions.pagination(
+        this.summerFruitsArray,
+        4,
+        1
+      );
+      this.winterFruitsPage = paginationFunctions.pagination(
+        this.winterFruitsArray,
+        4,
+        1
+      );
     });
   }
 
@@ -65,6 +97,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.winterFruitsService.getWinterFruits()
     ).pipe(
       map(([summerFruits, winterFruits]) => {
+        this.setAllFruits(summerFruits, FruitType.summerFruits);
+        this.setAllFruits(winterFruits, FruitType.winterFruits);
         this.summerFruitsArray = summerFruits;
         this.summerFruitsPage = paginationFunctions.pagination(
           this.summerFruitsArray,
@@ -76,11 +110,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.winterFruitsArray,
           4,
           1
-        );
-        this.setAllFruits(summerFruits, FruitType.summerFruits);
-        this.setAllFruits(winterFruits, FruitType.winterFruits);
-        this.store.dispatch(
-          new fromProductsActions.InitializeProducts(this.allFruits)
         );
       })
     );

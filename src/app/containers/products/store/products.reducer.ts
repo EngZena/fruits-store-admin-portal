@@ -5,17 +5,22 @@ import {
   InitializeProducts,
   productsActions,
 } from './products.actions';
-
-import { ProductModel } from '@core/models/FruitModel';
+import { FruitType, ProductModel } from '@core/models/FruitModel';
 
 export interface productsState {
   productsListItems: ProductModel[];
   total: number;
+  summerFruits: ProductModel[];
+  winterFruits: ProductModel[];
+  hasLoaded: boolean;
 }
 
 const initialState: productsState = {
   productsListItems: [],
   total: 0,
+  summerFruits: [],
+  winterFruits: [],
+  hasLoaded: false,
 };
 
 const initializeProducts = (
@@ -37,7 +42,18 @@ const initializeProducts = (
 
   state = {
     ...state,
+    summerFruits: [
+      ...productsList.filter(
+        product => product.fruitType === FruitType.summerFruits
+      ),
+    ],
+    winterFruits: [
+      ...productsList.filter(
+        product => product.fruitType === FruitType.winterFruits
+      ),
+    ],
     productsListItems: [...productsList],
+    hasLoaded: true,
     total: productsList.length,
   };
   return state;
@@ -48,11 +64,21 @@ export const getAllProducts = (state: productsState) => {
 };
 
 export const addNewProduct = (action: AddNewProduct, state: productsState) => {
-  state = {
-    ...state,
-    productsListItems: [...state.productsListItems, action.payload],
-    total: state.total + 1,
-  };
+  if (action.payload.fruitType === FruitType.summerFruits) {
+    state = {
+      ...state,
+      summerFruits: [action.payload, ...state.summerFruits],
+      productsListItems: [...state.productsListItems, action.payload],
+      total: state.total + 1,
+    };
+  } else {
+    state = {
+      ...state,
+      winterFruits: [action.payload, ...state.winterFruits],
+      productsListItems: [...state.productsListItems, action.payload],
+      total: state.total + 1,
+    };
+  }
   return state;
 };
 
