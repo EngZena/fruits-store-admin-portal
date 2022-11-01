@@ -17,7 +17,7 @@
         *ngFor="let item of summerFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.image }}"
+        imgName="{{ item.imageName }}"
         category="summerFruits">
       </app-card>
     </div>
@@ -39,7 +39,7 @@
           <button
             class="btnPrimary"
             (click)="NextPage(currentSummerPage, summerFruitsArray, 'summer')"
-            [disabled]="currentSummerPage === 3">
+            [disabled]="currentSummerPage === summerFruitsPages">
             <img
               src="../../../assets/svg/arrow-right-circle-fill.svg"
               class="icon" />
@@ -57,7 +57,7 @@
         *ngFor="let item of winterFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.image }}"
+        imgName="{{ item.imageName }}"
         category="winterFruits">
       </app-card>
     </div>
@@ -79,7 +79,7 @@
           <button
             class="btnPrimary"
             (click)="NextPage(currentWinterPage, winterFruitsArray, 'winter')"
-            [disabled]="currentWinterPage === 3">
+            [disabled]="currentWinterPage === winterFruitsPages">
             <img
               src="../../../assets/svg/arrow-right-circle-fill.svg"
               class="icon" />
