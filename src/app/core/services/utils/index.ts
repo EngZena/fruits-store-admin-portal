@@ -1,1 +1,6 @@
-export { pagination, NextPage, PreviousPage } from './pagination';
+export {
+  pagination,
+  NextPage,
+  PreviousPage,
+  getTotalNumberOfPages,
+} from './pagination';
