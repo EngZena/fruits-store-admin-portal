@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FruitType } from '@core/models/FruitModel';
 
@@ -19,4 +19,11 @@ export class CardComponent {
 
   @Input()
   category!: FruitType;
+
+  @Output()
+  productDeleted: EventEmitter<any> = new EventEmitter();
+
+  deleteProduct() {
+    this.productDeleted.emit();
+  }
 }

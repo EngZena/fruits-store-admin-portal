@@ -2,6 +2,7 @@ import * as productsActionTypes from './products.action-types';
 
 import {
   AddNewProduct,
+  DeleteProductById,
   InitializeProducts,
   productsActions,
 } from './products.actions';
@@ -82,6 +83,28 @@ export const addNewProduct = (action: AddNewProduct, state: productsState) => {
   return state;
 };
 
+export const deleteProductById = (
+  action: DeleteProductById,
+  state: productsState
+) => {
+  state = {
+    ...state,
+    summerFruits: [
+      ...state.summerFruits.filter(product => product.id !== action.payload),
+    ],
+    winterFruits: [
+      ...state.winterFruits.filter(product => product.id !== action.payload),
+    ],
+    productsListItems: [
+      ...state.productsListItems.filter(
+        product => product.id !== action.payload
+      ),
+    ],
+    total: state.productsListItems.length,
+  };
+  return state;
+};
+
 export const productsReducers = (
   state = initialState,
   action: productsActions | any
@@ -93,6 +116,8 @@ export const productsReducers = (
       return getAllProducts(state);
     case productsActionTypes.ADD_NEW_PRODUCTS:
       return addNewProduct(action, state);
+    case productsActionTypes.DELETE_PRODUCT_BY_ID:
+      return deleteProductById(action, state);
     default:
       return state;
   }
