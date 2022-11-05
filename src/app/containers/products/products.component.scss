@@ -25,6 +25,9 @@ h3 {
   justify-content: space-evenly;
   margin-top: 20px;
   margin-bottom: 20px;
+  button:disabled {
+    cursor: not-allowed;
+  }
   button {
     color: $white_color;
     border: 0;
@@ -38,9 +41,6 @@ h3 {
   }
 }
 
-button:disabled {
-  cursor: not-allowed;
-}
 .btnPrimary {
   filter: $pink_color_filter;
 }
