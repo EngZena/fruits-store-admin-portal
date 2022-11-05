@@ -99,19 +99,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
       map(([summerFruits, winterFruits]) => {
         this.setAllFruits(summerFruits, FruitType.summerFruits);
         this.setAllFruits(winterFruits, FruitType.winterFruits);
-        this.summerFruitsArray = summerFruits;
-        this.summerFruitsPage = paginationFunctions.pagination(
-          this.summerFruitsArray,
-          4,
-          1
-        );
-        this.winterFruitsArray = winterFruits;
-        this.winterFruitsPage = paginationFunctions.pagination(
-          this.winterFruitsArray,
-          4,
-          1
-        );
+        this.initializeData(summerFruits, winterFruits);
       })
+    );
+  }
+
+  initializeData(summerFruits: FruitModel[], winterFruits: FruitModel[]) {
+    this.summerFruitsArray = summerFruits;
+    this.summerFruitsPage = paginationFunctions.pagination(
+      this.summerFruitsArray,
+      4,
+      1
+    );
+    this.winterFruitsArray = winterFruits;
+    this.winterFruitsPage = paginationFunctions.pagination(
+      this.winterFruitsArray,
+      4,
+      1
     );
   }
 
