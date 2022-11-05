@@ -164,6 +164,7 @@ export class AuthEffects {
     tap(() => {
       this.authService.clearLogoutTimer();
       localStorage.removeItem('userData');
+      localStorage.clear();
       this.cookiesService.deleteAll();
       this.router.navigate(['/login']);
     })
