@@ -4,4 +4,16 @@
     <p>{{ name }}</p>
     <p>kilo: {{ price }} JOD</p>
   </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <button
+      mat-icon-button
+      aria-label="delete"
+      color="primary"
+      (click)="deleteProduct()">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="edit" color="primary">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
 </div>

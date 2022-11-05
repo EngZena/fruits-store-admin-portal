@@ -88,6 +88,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
         4,
         1
       );
+      this.currentWinterPage = 1;
+      this.currentSummerPage = 1;
     });
   }
 
@@ -154,6 +156,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   addNewProduct() {
     this.router.navigate(['add-new-product'], { relativeTo: this.route });
+  }
+
+  deleteProductById(productId: string) {
+    this.store.dispatch(new fromProductsActions.DeleteProductById(productId));
   }
 
   ngOnDestroy(): void {

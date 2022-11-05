@@ -18,7 +18,8 @@
         name="{{ item.name }}"
         price="{{ item.price }}"
         imgName="{{ item.imageName }}"
-        category="summerFruits">
+        category="summerFruits"
+        (productDeleted)="deleteProductById(item.id)">
       </app-card>
     </div>
     <div>
@@ -58,7 +59,8 @@
         name="{{ item.name }}"
         price="{{ item.price }}"
         imgName="{{ item.imageName }}"
-        category="winterFruits">
+        category="winterFruits"
+        (productDeleted)="deleteProductById(item.id)">
       </app-card>
     </div>
     <div>
