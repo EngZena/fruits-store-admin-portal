@@ -22,6 +22,7 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.themeService.getDarkTheme();
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
 
