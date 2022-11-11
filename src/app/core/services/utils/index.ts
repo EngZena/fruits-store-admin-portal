@@ -4,3 +4,5 @@ export {
   PreviousPage,
   getTotalNumberOfPages,
 } from './pagination';
+
+export { isEmptyArray } from './service.utils';
