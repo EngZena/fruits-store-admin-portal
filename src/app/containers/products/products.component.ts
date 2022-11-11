@@ -1,11 +1,12 @@
 import * as fromApp from '@store/app.reducer';
 import * as fromProductsActions from '@containers/products/store/products.actions';
 import * as paginationFunctions from '../../core/services/utils';
+import * as serviceUtils from '@core/services/utils/service.utils';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FruitModel, FruitType, ProductModel } from '@core/models/FruitModel';
-import { Subscription, forkJoin } from 'rxjs';
+import { Observable, Subscription, forkJoin, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
@@ -34,6 +35,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   summerFruitsPages: number = 4;
   winterFruitsPages: number = 4;
   firstRender: boolean = true;
+  emptyProducts: Observable<boolean> = of(false);
+  noProducts: boolean = true;
   constructor(
     private summerFruitsService: SummerFruitsService,
     private winterFruitsService: WinterFruitsService,
@@ -70,6 +73,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
     );
     this.store.select('products').subscribe(data => {
+      if (
+        serviceUtils.isEmptyArray(data.summerFruits) &&
+        serviceUtils.isEmptyArray(data.winterFruits) &&
+        this.noProducts
+      ) {
+        this.emptyProducts = of(true);
+        this.noProducts = false;
+      } else {
+        this.emptyProducts = of(false);
+        this.noProducts = true;
+      }
       this.summerFruitsArray = data.summerFruits;
       this.winterFruitsArray = data.winterFruits;
       this.summerFruitsPages = paginationFunctions.getTotalNumberOfPages(

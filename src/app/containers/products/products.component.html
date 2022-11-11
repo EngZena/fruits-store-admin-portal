@@ -1,10 +1,13 @@
-<div *ngIf="isLoading">
+<div *ngIf="isLoading" class="center-content">
   <app-loading></app-loading>
 </div>
 <div *ngIf="!isLoading" class="products-container">
   <div fxLayout="row">
     <div fxFlex="88" fxFlex.sm="75" fxFlex.xs="50"></div>
-    <div fxFlex="12">
+    <div
+      fxFlex="12"
+      [ngClass]="{ 'center-content': (emptyProducts | async) }"
+      [ngStyle]="{ 'display: table': (emptyProducts | async) }">
       <button mat-raised-button color="primary" (click)="addNewProduct()">
         Add New Fruit
       </button>
