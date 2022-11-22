@@ -5,7 +5,7 @@
   fxLayoutGap="2rem"
   fxLayoutGap.xs="0px"
   class="product-form">
-  <div fxLayout="column" fxFlex="50">
+  <div fxLayout="column" fxFlex="100">
     <form
       (ngSubmit)="addNewFruit()"
       [formGroup]="productForm"
@@ -14,20 +14,16 @@
         fxLayout="row"
         fxLayout.sm="column"
         fxLayout.xs="column"
-        fxLayoutAlign="space-between center"
+        fxLayoutAlign="space-evenly center"
         fxLayoutGap="2rem"
         fxLayoutGap.xs="0px">
-        <div fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
             <mat-label>Name</mat-label>
-            <input
-              matInput
-              formControlName="name"
-              placeholder="Fruit name"
-              required />
+            <input matInput formControlName="name" placeholder="Fruit name" />
           </mat-form-field>
         </div>
-        <div fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
             <mat-label>Price</mat-label>
             <input
@@ -38,7 +34,15 @@
               type="number" />
           </mat-form-field>
         </div>
-        <div fxLayout.xs="column">
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-evenly center"
+        fxLayoutGap="2rem"
+        fxLayoutGap.xs="0px">
+        <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
             <mat-label>Fruit Type</mat-label>
             <mat-select formControlName="fruitType" name="food">
@@ -50,23 +54,40 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
-            <mat-label>Image Name</mat-label>
+            <mat-label>Image</mat-label>
             <input
               readonly="true"
               matInput
               formControlName="imageName"
-              placeholder="Image Name" />
+              placeholder="Image"
+              (click)="openInput()" />
           </mat-form-field>
         </div>
       </div>
       <div
         fxLayout="row"
-        fxLayoutAlign="space-between center"
+        fxLayoutAlign="space-evenly center"
         fxLayout.sm="column"
         fxLayout.xs="column">
-        <div fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
+          <img [src]="imageURL" *ngIf="imageURL" alt="imageURL" />
+        </div>
+        <p
+          fxLayout.xs="column"
+          fxFlex="35"
+          fxLayoutGap="2rem"
+          fxLayoutGap.xs="0px">
+          {{ imageMsg }}
+        </p>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-evenly center"
+        fxLayout.sm="column"
+        fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
           <input
             #imageInput
             type="file"
@@ -74,34 +95,22 @@
             accept=".png, .jpg"
             [fxHide]="true"
             id="fileInput" />
-          <div>
-            <button
-              color="accent"
-              class="mr-1"
-              mat-raised-button
-              type="button"
-              (click)="openInput()">
-              Upload Image
-            </button>
-          </div>
+          <!-- <div>
+          <button
+            color="accent"
+            class="mr-1"
+            mat-raised-button
+            type="button"
+            (click)="openInput()">
+            Upload Image
+          </button>
+        </div> -->
         </div>
-        <div fxLayout.xs="column">
+        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
           <button color="primary" mat-raised-button type="submit" class="mr-1">
             Submit Add
           </button>
         </div>
-      </div>
-      <div
-        fxLayout="row"
-        fxLayoutAlign="space-around center"
-        fxLayout.sm="column"
-        fxLayout.xs="column">
-        <div fxLayout.xs="column" fxLayoutAlign="start start">
-          <img [src]="imageURL" *ngIf="imageURL" alt="imageURL" />
-        </div>
-        <p fxLayout.xs="column" fxLayoutGap="2rem" fxLayoutGap.xs="0px">
-          {{ imageMsg }}
-        </p>
       </div>
     </form>
   </div>
