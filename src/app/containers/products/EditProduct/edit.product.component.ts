@@ -9,8 +9,8 @@ import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-edit-product',
-  templateUrl: './editProduct.component.html',
-  styleUrls: ['./editProduct.component.scss'],
+  templateUrl: './edit.product.component.html',
+  styleUrls: ['./edit.product.component.scss'],
 })
 export class EditProductComponent implements OnInit {
   productById!: ProductModel | null;
