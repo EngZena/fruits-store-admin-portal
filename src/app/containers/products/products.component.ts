@@ -176,6 +176,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new fromProductsActions.DeleteProductById(productId));
   }
 
+  editProductById(productId: string) {
+    this.router.navigate([`edit-product/${productId}`], {
+      relativeTo: this.route,
+    });
+  }
+
   ngOnDestroy(): void {
     this.errorSummerSub.unsubscribe();
     this.errorWinterSub.unsubscribe();

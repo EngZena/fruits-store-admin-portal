@@ -33,8 +33,16 @@ export class DeleteProductById implements Action {
   }
 }
 
+export class GetProductById implements Action {
+  readonly type = ProductsActionTypes.GET_PRODUCT_BY_ID;
+  constructor(public payload: string) {
+    console.log('\x1b[34m%s\x1b[0m', ProductsActionTypes.GET_PRODUCT_BY_ID);
+  }
+}
+
 export type productsActions =
   | GetAllProducts
   | InitializeProducts
   | AddNewProduct
-  | DeleteProductById;
+  | DeleteProductById
+  | GetProductById;
