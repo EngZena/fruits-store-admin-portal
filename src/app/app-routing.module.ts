@@ -4,6 +4,7 @@ import { AddNewProductComponent } from '@containers/products/AddNewProduct/add-n
 import { AuthGuard } from '@containers/login-page/auth.guard';
 import { CustomersComponent } from '@containers/customers/customers.component';
 import { CustomersResolver } from '@core/services/resolver/customers.resolver';
+import { EditProductComponent } from '@containers/products/EditProduct/EditProduct.component';
 import { LoginPageComponent } from '@containers/login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from '@components/page-not-found/page-not-found.component';
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'add-new-product',
         component: AddNewProductComponent,
+      },
+      {
+        path: 'edit-product/:id',
+        component: EditProductComponent,
       },
     ],
   },
