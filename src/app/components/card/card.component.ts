@@ -23,7 +23,14 @@ export class CardComponent {
   @Output()
   productDeleted: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  productEdited: EventEmitter<any> = new EventEmitter();
+
   deleteProduct() {
     this.productDeleted.emit();
+  }
+
+  editProduct() {
+    this.productEdited.emit();
   }
 }

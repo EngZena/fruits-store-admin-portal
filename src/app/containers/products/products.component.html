@@ -22,7 +22,8 @@
         price="{{ item.price }}"
         imgName="{{ item.imageName }}"
         category="summerFruits"
-        (productDeleted)="deleteProductById(item.id)">
+        (productDeleted)="deleteProductById(item.id)"
+        (productEdited)="editProductById(item.id)">
       </app-card>
     </div>
     <div>
@@ -63,7 +64,8 @@
         price="{{ item.price }}"
         imgName="{{ item.imageName }}"
         category="winterFruits"
-        (productDeleted)="deleteProductById(item.id)">
+        (productDeleted)="deleteProductById(item.id)"
+        (productEdited)="editProductById(item.id)">
       </app-card>
     </div>
     <div>
