@@ -1,8 +1,9 @@
 import * as fromApp from '@store/app.reducer';
 import * as fromProductsActions from '@containers/products/store/products.actions';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
@@ -19,18 +20,17 @@ export class ProductFormComponent {
     image: new FormControl(null, [Validators.required]),
     imageName: new FormControl(null, [Validators.required]),
   });
-
   invalidChars = ['-', '+', 'e', 'E'];
-
   imageURL: any;
   imageMsg: any;
-
   FruitsTypes = [
     { value: 'SUMMER_FRUITS', viewValue: 'Summer Fruits' },
     { value: 'WINTER_FRUITS', viewValue: 'Winter Fruits' },
   ];
   @ViewChild('formDirective') private formDirective!: NgForm;
-  constructor(private store: Store<fromApp.AppState>) {}
+  @Input() editProductFormMode: boolean = false;
+
+  constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   keyPressNumbersDecimal(event: KeyboardEvent) {
     if (this.invalidChars.includes(event.key)) {
@@ -74,15 +74,20 @@ export class ProductFormComponent {
 
   addNewFruit() {
     if (this.productForm.valid) {
-      this.store.dispatch(
-        new fromProductsActions.AddNewProduct({
-          ...this.productForm.getRawValue(),
-          id: Math.random().toFixed(3).toString(),
-        })
-      );
+      if (this.editProductFormMode) {
+      } else {
+        this.store.dispatch(
+          new fromProductsActions.AddNewProduct({
+            ...this.productForm.getRawValue(),
+            id: Math.random().toFixed(3).toString(),
+          })
+        );
+      }
+
       this.formDirective.resetForm();
       this.imageMsg = null;
       this.imageURL = null;
+      this.router.navigate(['products']);
     }
   }
 }

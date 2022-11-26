@@ -82,6 +82,13 @@
           fxLayout.xs="column"
           fxFlex="35"
           fxLayoutGap="2rem">
+          <input
+            #imageInput
+            type="file"
+            (change)="selectFile(imageInput)"
+            accept=".png, .jpg"
+            [fxHide]="true"
+            id="fileInput" />
           <img
             fxFlex
             fxLayout.xs="column"
@@ -94,33 +101,13 @@
         </div>
         <div fxLayout.xs="column" fxFlex="35">
           <button color="primary" mat-raised-button type="submit" class="mr-1">
-            Submit Add
+            <ng-container *ngIf="!editProductFormMode">
+              Submit Add
+            </ng-container>
+            <ng-container *ngIf="editProductFormMode">
+              Submit Edit
+            </ng-container>
           </button>
-        </div>
-      </div>
-      <div
-        fxLayout="row"
-        fxLayoutAlign="space-evenly center"
-        fxLayout.sm="column"
-        fxLayout.xs="column">
-        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
-          <input
-            #imageInput
-            type="file"
-            (change)="selectFile(imageInput)"
-            accept=".png, .jpg"
-            [fxHide]="true"
-            id="fileInput" />
-          <!-- <div>
-          <button
-            color="accent"
-            class="mr-1"
-            mat-raised-button
-            type="button"
-            (click)="openInput()">
-            Upload Image
-          </button>
-        </div> -->
         </div>
       </div>
     </form>
