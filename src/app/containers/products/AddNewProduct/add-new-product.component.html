@@ -16,6 +16,7 @@
         fxLayout.xs="column"
         fxLayoutAlign="space-evenly center"
         fxLayoutGap="2rem"
+        fxLayoutGap.sm="0rem"
         fxLayoutGap.xs="0px">
         <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
@@ -41,6 +42,7 @@
         fxLayout.xs="column"
         fxLayoutAlign="space-evenly center"
         fxLayoutGap="2rem"
+        fxLayoutGap.sm="0rem"
         fxLayoutGap.xs="0px">
         <div fxLayout.xs="column" fxFlex="35">
           <mat-form-field fxFlex appearance="outline">
@@ -58,6 +60,7 @@
           <mat-form-field fxFlex appearance="outline">
             <mat-label>Image</mat-label>
             <input
+              class="image_input"
               readonly="true"
               matInput
               formControlName="imageName"
@@ -68,19 +71,32 @@
       </div>
       <div
         fxLayout="row"
-        fxLayoutAlign="space-evenly center"
         fxLayout.sm="column"
-        fxLayout.xs="column">
-        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
-          <img [src]="imageURL" *ngIf="imageURL" alt="imageURL" />
-        </div>
-        <p
+        fxLayout.xs="column"
+        fxLayoutAlign="space-evenly center"
+        fxLayoutGap="2rem"
+        fxLayoutGap.sm="0rem"
+        fxLayoutGap.xs="0px">
+        <div
+          fxLayout="column"
           fxLayout.xs="column"
           fxFlex="35"
-          fxLayoutGap="2rem"
-          fxLayoutGap.xs="0px">
-          {{ imageMsg }}
-        </p>
+          fxLayoutGap="2rem">
+          <img
+            fxFlex
+            fxLayout.xs="column"
+            [src]="imageURL"
+            *ngIf="imageURL"
+            alt="imageURL" />
+          <p fxFlex fxLayout.xs="column">
+            {{ imageMsg }}
+          </p>
+        </div>
+        <div fxLayout.xs="column" fxFlex="35">
+          <button color="primary" mat-raised-button type="submit" class="mr-1">
+            Submit Add
+          </button>
+        </div>
       </div>
       <div
         fxLayout="row"
@@ -105,11 +121,6 @@
             Upload Image
           </button>
         </div> -->
-        </div>
-        <div fxLayout.xs="column" fxFlex="35" fxLayoutAlign="center center">
-          <button color="primary" mat-raised-button type="submit" class="mr-1">
-            Submit Add
-          </button>
         </div>
       </div>
     </form>
