@@ -13,7 +13,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./edit.product.component.scss'],
 })
 export class EditProductComponent implements OnInit {
-  productById!: ProductModel | null;
+  productById!: ProductModel;
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store<fromApp.AppState>
@@ -26,7 +26,9 @@ export class EditProductComponent implements OnInit {
       )
     );
     this.store.select('products').subscribe(data => {
-      this.productById = data.productById;
+      if (data.productById !== null) {
+        this.productById! = data.productById;
+      }
     });
   }
 }
