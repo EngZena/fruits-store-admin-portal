@@ -1,18 +1,20 @@
 import * as fromApp from '@store/app.reducer';
 import * as fromProductsActions from '@containers/products/store/products.actions';
 
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
 
+import { ProductModel } from '@core/models/FruitModel';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { getRandomInt } from '@core/services/utils/service.utils';
 
 @Component({
   selector: 'app-product-form-component',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss'],
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit {
   productForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
@@ -29,8 +31,21 @@ export class ProductFormComponent {
   ];
   @ViewChild('formDirective') private formDirective!: NgForm;
   @Input() editProductFormMode: boolean = false;
-
+  @Input()
+  productData!: ProductModel;
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
+
+  ngOnInit(): void {
+    if (this.editProductFormMode) {
+      this.productForm.get('id')?.setValue(this.productData.id);
+      this.productForm.get('name')?.setValue(this.productData.name);
+      this.productForm.get('price')?.setValue(this.productData.price);
+      this.productForm.get('fruitType')?.setValue(this.productData.fruitType);
+      this.productForm.get('image')?.setValue(this.productData.image);
+      this.productForm.get('imageName')?.setValue(this.productData.imageName);
+      this.imageURL = `../../../assets/products/${this.productData.imageName}`;
+    }
+  }
 
   keyPressNumbersDecimal(event: KeyboardEvent) {
     if (this.invalidChars.includes(event.key)) {
@@ -75,11 +90,17 @@ export class ProductFormComponent {
   addNewFruit() {
     if (this.productForm.valid) {
       if (this.editProductFormMode) {
+        this.store.dispatch(
+          new fromProductsActions.UpdateProductById({
+            ...this.productForm.getRawValue(),
+            id: this.productData.id,
+          })
+        );
       } else {
         this.store.dispatch(
           new fromProductsActions.AddNewProduct({
             ...this.productForm.getRawValue(),
-            id: Math.random().toFixed(3).toString(),
+            id: getRandomInt().toString(),
           })
         );
       }
