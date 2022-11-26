@@ -5,9 +5,11 @@ import {
   DeleteProductById,
   GetProductById,
   InitializeProducts,
+  UpdateProductById,
   productsActions,
 } from './products.actions';
 import { FruitType, ProductModel } from '@core/models/FruitModel';
+import { filterItems, getRandomInt } from '@core/services/utils/service.utils';
 
 export interface productsState {
   productsListItems: ProductModel[];
@@ -34,7 +36,7 @@ const initializeProducts = (
   const productsList: ProductModel[] = [];
   action.payload.forEach(product => {
     let productItem: ProductModel = {
-      id: Math.random().toString(),
+      id: getRandomInt().toString(),
       name: product.name,
       image: product.image,
       imageName: product.imageName,
@@ -58,6 +60,7 @@ const initializeProducts = (
     ],
     productsListItems: [...productsList],
     hasLoaded: true,
+    productById: null,
     total: productsList.length,
   };
   return state;
@@ -73,6 +76,7 @@ export const addNewProduct = (action: AddNewProduct, state: productsState) => {
       ...state,
       summerFruits: [action.payload, ...state.summerFruits],
       productsListItems: [...state.productsListItems, action.payload],
+      productById: null,
       total: state.total + 1,
     };
   } else {
@@ -80,6 +84,7 @@ export const addNewProduct = (action: AddNewProduct, state: productsState) => {
       ...state,
       winterFruits: [action.payload, ...state.winterFruits],
       productsListItems: [...state.productsListItems, action.payload],
+      productById: null,
       total: state.total + 1,
     };
   }
@@ -103,6 +108,7 @@ export const deleteProductById = (
         product => product.id !== action.payload
       ),
     ],
+    productById: null,
     total: state.productsListItems.length,
   };
   return state;
@@ -122,6 +128,29 @@ export const getProductById = (
   return state;
 };
 
+export const updateProductById = (
+  action: UpdateProductById,
+  state: productsState
+) => {
+  const productsItems = filterItems(state.productsListItems, action.payload.id);
+  const productsListItems = [...productsItems, action.payload];
+  const summerFruitsList = productsListItems.filter(
+    product => product.fruitType === FruitType.summerFruits
+  );
+  const winterFruitsList = productsListItems.filter(
+    product => product.fruitType === FruitType.winterFruits
+  );
+  state = {
+    ...state,
+    summerFruits: [...summerFruitsList],
+    winterFruits: [...winterFruitsList],
+    productsListItems: [...productsItems, action.payload],
+    productById: action.payload,
+    total: state.total,
+  };
+  return state;
+};
+
 export const productsReducers = (
   state = initialState,
   action: productsActions | any
@@ -137,6 +166,8 @@ export const productsReducers = (
       return deleteProductById(action, state);
     case productsActionTypes.GET_PRODUCT_BY_ID:
       return getProductById(action, state);
+    case productsActionTypes.UPDATE_PRODUCT_BY_ID:
+      return updateProductById(action, state);
     default:
       return state;
   }
