@@ -43,11 +43,15 @@ export class AddNewProductComponent {
   }
 
   selectFile(imageInput: any) {
-    if (!imageInput.files[0] || imageInput.files[0].length == 0) {
+    if (
+      (!imageInput.files[0] || imageInput.files[0].length == 0) &&
+      this.productForm.get('image')?.value === null
+    ) {
       this.imageMsg = 'You must select an image';
       return;
     }
 
+    if (imageInput.files.length === 0) return;
     const mimeType = imageInput.files[0].type;
 
     if (mimeType.match(/image\/*/) == null) {
