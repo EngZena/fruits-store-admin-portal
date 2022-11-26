@@ -40,9 +40,17 @@ export class GetProductById implements Action {
   }
 }
 
+export class UpdateProductById implements Action {
+  readonly type = ProductsActionTypes.UPDATE_PRODUCT_BY_ID;
+  constructor(public payload: ProductModel) {
+    console.log('\x1b[34m%s\x1b[0m', ProductsActionTypes.UPDATE_PRODUCT_BY_ID);
+  }
+}
+
 export type productsActions =
   | GetAllProducts
   | InitializeProducts
   | AddNewProduct
   | DeleteProductById
-  | GetProductById;
+  | GetProductById
+  | UpdateProductById;
