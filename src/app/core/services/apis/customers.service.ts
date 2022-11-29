@@ -11,11 +11,11 @@ export class CustomersService {
   constructor(private http: HttpClient) {}
 
   getCustoemrsData() {
-    return this.http.get(`${baseURL}/usersData.json`).pipe(
+    return this.http.get(`${baseURL}/customersList.json`).pipe(
       map(responseData => {
         if (responseData != null) {
           const customersList = Object.values(responseData);
-          return customersList;
+          return customersList[0];
         }
         return null;
       }),
