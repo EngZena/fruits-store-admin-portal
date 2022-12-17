@@ -16,7 +16,12 @@
           (click)="toggleShowDetails(i)">
           Details
         </button>
-        <button mat-stroked-button color="accent">REMOVE</button>
+        <button
+          mat-stroked-button
+          color="accent"
+          (click)="openDialog(customer.userName, i)">
+          REMOVE
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

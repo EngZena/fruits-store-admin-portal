@@ -1,4 +1,5 @@
 @import '@angular/material/theming';
+@import '../../../assets/scss/constants.scss';
 
 @mixin customer-card-theme($theme) {
   $primary: map-get(
@@ -20,4 +21,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0.5rem;
+}
+
+.backdrop-background {
+  background-color: $dark_gray;
+  backdrop-filter: blur(4px);
 }
