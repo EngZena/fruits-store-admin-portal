@@ -7,7 +7,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { NetworkService } from '@core/services/Network/Network.service';
 import { Store } from '@ngrx/store';
