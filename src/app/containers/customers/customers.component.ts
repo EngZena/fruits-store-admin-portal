@@ -1,6 +1,8 @@
-/* eslint-disable no-console */
 import { ActivatedRoute } from '@angular/router';
+/* eslint-disable no-console */
 import { Component } from '@angular/core';
+import { DialogComponent } from '@components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 import { adminEmail } from '@containers/login-page/admin.data';
 
 @Component({
@@ -12,7 +14,8 @@ export class CustomersComponent {
   customersList: any[] = [];
   customersDataExist: boolean = false;
   showDetails: boolean = false;
-  constructor(private route: ActivatedRoute) {
+
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     if (localStorage.getItem('customers_data') === null) {
       this.getCustomersData();
       localStorage.setItem(
@@ -32,6 +35,17 @@ export class CustomersComponent {
         '[LOCAL STORAGE] [Customers] get customers data from local storage'
       );
     }
+  }
+
+  openDialog(userName: string, id: number): void {
+    const isDarkTheme = localStorage.getItem('darkTheme');
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { name: userName, id: id, isDarkTheme: isDarkTheme },
+      backdropClass: 'backdrop-background',
+    });
+
+    dialogRef.afterClosed().subscribe(_result => {});
   }
 
   getCustomersData() {
