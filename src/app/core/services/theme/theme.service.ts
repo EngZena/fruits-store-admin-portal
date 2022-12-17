@@ -16,6 +16,7 @@ export class ThemeService {
       this.darkTheme = false;
     }
     this.setDarkTheme(JSON.parse(this.darkTheme));
+    return this.darkTheme;
   }
 
   setDarkTheme(isDarkTheme: boolean): void {
