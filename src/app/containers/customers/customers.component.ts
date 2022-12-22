@@ -16,23 +16,11 @@ export class CustomersComponent {
   showDetails: boolean = false;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+    this.getCustomersData();
     if (localStorage.getItem('customers_data') === null) {
-      this.getCustomersData();
       localStorage.setItem(
         'customers_data',
         JSON.stringify(this.customersList)
-      );
-      console.log(
-        '\x1b[36m%s\x1b[0m',
-        '[LOCAL STORAGE] [Customers] set customers data in local storage'
-      );
-    } else {
-      this.setCustomersList(
-        JSON.parse(localStorage.getItem('customers_data')!)
-      );
-      console.log(
-        '\x1b[36m%s\x1b[0m',
-        '[LOCAL STORAGE] [Customers] get customers data from local storage'
       );
     }
   }
