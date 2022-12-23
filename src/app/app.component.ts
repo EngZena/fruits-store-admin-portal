@@ -8,10 +8,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
+import { CustomersLocalStorageService } from '@core/services/localStorage/customers.local-storage.service';
 import { NetworkService } from '@core/services/Network/Network.service';
 import { Store } from '@ngrx/store';
 import { ThemeService } from '@core/services/theme/theme.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +29,23 @@ export class AppComponent implements OnInit, AfterContentChecked {
     private store: Store<fromApp.AppState>,
     private themeService: ThemeService,
     private networkService: NetworkService,
-    private cdref: ChangeDetectorRef
-  ) {}
+    private cdref: ChangeDetectorRef,
+    private router: Router,
+    private customersLocalStorageService: CustomersLocalStorageService
+  ) {
+    this.router.events
+      .pipe(
+        filter(
+          (routerEvent): routerEvent is NavigationEnd =>
+            routerEvent instanceof NavigationEnd
+        )
+      )
+      .subscribe((event: NavigationEnd) => {
+        if (event.id === 1 && event.url === event.urlAfterRedirects) {
+          this.customersLocalStorageService.resetCustomersData();
+        }
+      });
+  }
 
   ngAfterContentChecked(): void {
     this.cdref.detectChanges();
