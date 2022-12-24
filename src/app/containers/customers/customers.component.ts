@@ -31,7 +31,14 @@ export class CustomersComponent {
       backdropClass: 'backdrop-background',
     });
 
-    dialogRef.afterClosed().subscribe(_result => {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (typeof result === 'number') {
+        this.customersList =
+          this.customersLocalStorageService.deleteCustomerByUserName(
+            this.customersList[result].userName
+          );
+      }
+    });
   }
 
   getCustomersData() {

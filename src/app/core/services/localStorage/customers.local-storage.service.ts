@@ -31,10 +31,19 @@ export class CustomersLocalStorageService {
   }
 
   getCustomersData(): CustomerModel[] {
+    return JSON.parse(localStorage.getItem('customers_data')!);
+  }
+
+  deleteCustomerByUserName(userName: string) {
+    let customersList = this.getCustomersData();
+    customersList = customersList.filter(
+      customer => customer.userName !== userName
+    );
     console.log(
       '\x1b[36m%s\x1b[0m',
-      '[LOCAL STORAGE] [Customers] get customers data from local storage'
+      '[LOCAL STORAGE] [Customers] delete customer from local storage'
     );
-    return JSON.parse(localStorage.getItem('customers_data')!);
+    this.setCustomersData(customersList);
+    return customersList;
   }
 }
