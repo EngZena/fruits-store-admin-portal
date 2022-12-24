@@ -1,9 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
-/* eslint-disable no-console */
 import { Component } from '@angular/core';
+import { CustomerModel } from '@core/models/cusromer.model';
 import { DialogComponent } from '@components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { adminEmail } from '@containers/login-page/admin.data';
 
 @Component({
   selector: 'app-customers',
@@ -11,18 +10,12 @@ import { adminEmail } from '@containers/login-page/admin.data';
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent {
-  customersList: any[] = [];
+  customersList: CustomerModel[] = [];
   customersDataExist: boolean = false;
   showDetails: boolean = false;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     this.getCustomersData();
-    if (localStorage.getItem('customers_data') === null) {
-      localStorage.setItem(
-        'customers_data',
-        JSON.stringify(this.customersList)
-      );
-    }
   }
 
   openDialog(userName: string, id: number): void {
@@ -38,7 +31,7 @@ export class CustomersComponent {
 
   getCustomersData() {
     this.route.data.subscribe((data: any) => {
-      let result: any[] = [];
+      let result: CustomerModel[] = [];
       if (data.customersData.length > 0) {
         result = [...data.customersData];
         this.setCustomersList(result);
@@ -46,22 +39,15 @@ export class CustomersComponent {
     });
   }
 
-  setCustomersList(customersData: any[]) {
+  setCustomersList(customersData: CustomerModel[]) {
     this.customersDataExist = true;
-    customersData.forEach((element: any) => {
+    customersData.forEach((element: CustomerModel) => {
       element = {
         ...element,
         showDetails: false,
       };
       this.customersList.push(element);
     });
-    this.removeAdminFromCustomersList();
-  }
-
-  removeAdminFromCustomersList() {
-    this.customersList = this.customersList.filter(
-      data => data.email !== adminEmail
-    );
   }
 
   toggleShowDetails(index: number) {
