@@ -4,14 +4,19 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
+import { CustomersService } from '../apis/customers.service';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 @Injectable()
 export class CustomersResolver implements Resolve<any> {
-  constructor() {}
+  constructor(private customersService: CustomersService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return of(JSON.parse(localStorage.getItem('customers_data')!));
+    if (localStorage.getItem('customers_data') == null) {
+      return this.customersService.getCustoemrsData();
+    } else {
+      return of(JSON.parse(localStorage.getItem('customers_data')!));
+    }
   }
 }
