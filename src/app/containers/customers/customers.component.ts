@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { CustomerModel } from '@core/models/cusromer.model';
+import { CustomersLocalStorageService } from '@core/services/localStorage/customers.local-storage.service';
 import { DialogComponent } from '@components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,7 +15,11 @@ export class CustomersComponent {
   customersDataExist: boolean = false;
   showDetails: boolean = false;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private customersLocalStorageService: CustomersLocalStorageService
+  ) {
     this.getCustomersData();
   }
 
@@ -35,6 +40,9 @@ export class CustomersComponent {
       if (data.customersData.length > 0) {
         result = [...data.customersData];
         this.setCustomersList(result);
+        if (localStorage.getItem('customers_data') == null) {
+          return this.customersLocalStorageService.setCustomersData(result);
+        }
       }
     });
   }
