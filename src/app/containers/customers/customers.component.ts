@@ -21,6 +21,14 @@ export class CustomersComponent {
     private customersLocalStorageService: CustomersLocalStorageService
   ) {
     this.getCustomersData();
+    this.customersLocalStorageService.resetCustomerData.subscribe(
+      (data: Boolean) => {
+        if (data == true) {
+          this.customersList =
+            this.customersLocalStorageService.getCustomersData();
+        }
+      }
+    );
   }
 
   openDialog(userName: string, id: number): void {
