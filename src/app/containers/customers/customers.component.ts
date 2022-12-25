@@ -1,5 +1,6 @@
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
-import { Component } from '@angular/core';
 import { CustomerModel } from '@core/models/cusromer.model';
 import { CustomersLocalStorageService } from '@core/services/localStorage/customers.local-storage.service';
 import { DialogComponent } from '@components/dialog/dialog.component';
@@ -14,7 +15,12 @@ export class CustomersComponent {
   customersList: CustomerModel[] = [];
   customersDataExist: boolean = false;
   showDetails: boolean = false;
-
+  choosedCustomer!: CustomerModel;
+  customerUserName: string = '';
+  @ViewChild('customerEditTemplate')
+  customerEditTemplate!: TemplateRef<any>;
+  @ViewChild('customerDeleteTemplate')
+  customerDeleteTemplate!: TemplateRef<any>;
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -31,22 +37,41 @@ export class CustomersComponent {
     );
   }
 
-  openDialog(userName: string, id: number): void {
+  openRemoveDialog(userName: string, id: number): void {
+    this.customerUserName = userName;
     const isDarkTheme = localStorage.getItem('darkTheme');
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: { name: userName, id: id, isDarkTheme: isDarkTheme },
+      data: {
+        customer: userName,
+        isDarkTheme: isDarkTheme,
+        submitButtonLabel: 'Yes',
+        cancelButtonLabel: 'No',
+        template: this.customerDeleteTemplate,
+      },
       backdropClass: 'backdrop-background',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (typeof result === 'number') {
-        this.customersList =
-          this.customersLocalStorageService.deleteCustomerByUserName(
-            this.customersList[result].userName
-          );
-      }
+    dialogRef.afterClosed().subscribe(_result => {});
+  }
+
+  openEditDialog(customer: CustomerModel, id: number): void {
+    this.choosedCustomer = customer;
+    const isDarkTheme = localStorage.getItem('darkTheme');
+    let dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {
+        customer: customer,
+        title: `Edit ${customer.userName} details`,
+        isDarkTheme: isDarkTheme,
+        template: this.customerEditTemplate,
+        submitButtonLabel: 'Save',
+        cancelButtonLabel: 'Cancel',
+      },
+      backdropClass: 'backdrop-background',
     });
+
+    dialogRef.afterClosed().subscribe(_result => {});
   }
 
   getCustomersData() {
@@ -71,10 +96,5 @@ export class CustomersComponent {
       };
       this.customersList.push(element);
     });
-  }
-
-  toggleShowDetails(index: number) {
-    this.customersList[index].showDetails =
-      !this.customersList[index].showDetails;
   }
 }

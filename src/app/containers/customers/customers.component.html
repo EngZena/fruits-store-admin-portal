@@ -6,23 +6,42 @@
       <mat-card-title>{{ customer.userName }}</mat-card-title>
       <mat-card-subtitle>{{ customer.email }}</mat-card-subtitle>
       <mat-card-subtitle>{{ customer.gender }}</mat-card-subtitle>
-      <mat-card-content *ngIf="customer.showDetails">
+      <mat-card-content>
         <p>{{ customer.firstName }} {{ customer.lastName }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button
           mat-stroked-button
           color="primary"
-          (click)="toggleShowDetails(i)">
-          Details
+          (click)="openEditDialog(customer, i)">
+          Edit
         </button>
         <button
           mat-stroked-button
           color="accent"
-          (click)="openDialog(customer.userName, i)">
+          (click)="openRemoveDialog(customer.userName, i)">
           REMOVE
         </button>
       </mat-card-actions>
     </mat-card>
   </div>
 </ng-container>
+
+<ng-template #customerDeleteTemplate>
+  <p>Are you sure you want to remove {{ customerUserName }}?</p>
+</ng-template>
+
+<ng-template #customerEditTemplate>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="choosedCustomer.email" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="choosedCustomer.firstName" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="choosedCustomer.lastName" />
+  </mat-form-field>
+</ng-template>
