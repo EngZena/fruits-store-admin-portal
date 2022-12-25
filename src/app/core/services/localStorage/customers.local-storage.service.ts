@@ -2,11 +2,13 @@
 import { CustomerModel } from '@core/models/cusromer.model';
 import { CustomersService } from '../apis/customers.service';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomersLocalStorageService {
+  resetCustomerData: Subject<boolean> = new Subject();
   constructor(private customersService: CustomersService) {}
 
   resetCustomersData() {
@@ -19,6 +21,7 @@ export class CustomersLocalStorageService {
       .getCustoemrsData()
       .subscribe((result: CustomerModel[]) => {
         this.setCustomersData(result);
+        this.resetCustomerData.next(true);
       });
   }
 
