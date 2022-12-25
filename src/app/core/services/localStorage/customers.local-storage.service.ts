@@ -49,4 +49,18 @@ export class CustomersLocalStorageService {
     this.setCustomersData(customersList);
     return customersList;
   }
+
+  editCustomerByUserName(customerData: CustomerModel) {
+    let customersList = this.getCustomersData();
+    customersList = customersList.filter(
+      customer => customer.userName !== customerData.userName
+    );
+    customersList.push(customerData);
+    console.log(
+      '\x1b[36m%s\x1b[0m',
+      '[LOCAL STORAGE] [customerDatas] update customer to local storage'
+    );
+    this.setCustomersData(customersList);
+    return customersList;
+  }
 }
