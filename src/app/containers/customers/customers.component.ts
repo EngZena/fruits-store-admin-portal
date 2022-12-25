@@ -52,7 +52,12 @@ export class CustomersComponent {
       backdropClass: 'backdrop-background',
     });
 
-    dialogRef.afterClosed().subscribe(_result => {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (typeof result === 'string') {
+        this.customersList =
+          this.customersLocalStorageService.deleteCustomerByUserName(result);
+      }
+    });
   }
 
   openEditDialog(customer: CustomerModel, id: number): void {
@@ -71,7 +76,12 @@ export class CustomersComponent {
       backdropClass: 'backdrop-background',
     });
 
-    dialogRef.afterClosed().subscribe(_result => {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (typeof result === 'object') {
+        this.customersList =
+          this.customersLocalStorageService.editCustomerByUserName(result);
+      }
+    });
   }
 
   getCustomersData() {
