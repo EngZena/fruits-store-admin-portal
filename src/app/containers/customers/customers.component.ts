@@ -119,14 +119,18 @@ export class CustomersComponent {
   }
 
   setCustomersList(customersData: CustomerModel[]) {
-    this.customersDataExist = true;
-    customersData.forEach((element: CustomerModel) => {
-      element = {
-        ...element,
-        showDetails: false,
-      };
-      this.customersList.push(element);
-    });
+    if (customersData.length > 0) {
+      this.customersDataExist = true;
+      customersData.forEach((element: CustomerModel) => {
+        element = {
+          ...element,
+          showDetails: false,
+        };
+        this.customersList.push(element);
+      });
+    } else {
+      this.customersDataExist = false;
+    }
   }
 
   setCustomerEditForm(customer: CustomerModel) {

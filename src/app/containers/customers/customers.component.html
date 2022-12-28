@@ -27,6 +27,12 @@
   </div>
 </ng-container>
 
+<ng-container *ngIf="!customersDataExist || customersList.length === 0">
+  <div class="text-container">
+    <p>All customers have been removed.</p>
+  </div>
+</ng-container>
+
 <ng-template #customerDeleteTemplate>
   <p>Are you sure you want to remove {{ customerUserName }}?</p>
 </ng-template>
