@@ -6,15 +6,17 @@
     *ngIf="data.template"
     [ngTemplateOutlet]="data.template"></ng-container>
 </div>
-<div mat-dialog-actions>
-  <button color="accent" mat-raised-button (click)="onCancel()">
-    {{ cancelButtonLabel }}
-  </button>
-  <button
-    color="primary"
-    mat-raised-button
-    [mat-dialog-close]="data.customer"
-    cdkFocusInitial>
-    {{ submitButtonLabel }}
-  </button>
-</div>
+<ng-container *ngIf="!data.actions">
+  <div mat-dialog-actions>
+    <button color="accent" mat-raised-button (click)="onCancel()">
+      {{ cancelButtonLabel }}
+    </button>
+    <button
+      color="primary"
+      mat-raised-button
+      [mat-dialog-close]="data.customer"
+      cdkFocusInitial>
+      {{ submitButtonLabel }}
+    </button>
+  </div>
+</ng-container>

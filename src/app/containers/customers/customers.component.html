@@ -32,16 +32,58 @@
 </ng-template>
 
 <ng-template #customerEditTemplate>
-  <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput [(ngModel)]="choosedCustomer.email" />
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>First Name</mat-label>
-    <input matInput [(ngModel)]="choosedCustomer.firstName" />
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Last Name</mat-label>
-    <input matInput [(ngModel)]="choosedCustomer.lastName" />
-  </mat-form-field>
+  <form
+    [formGroup]="customerForm"
+    #formDirective="ngForm"
+    (ngSubmit)="saveCustomerDetails(formDirective)">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" required formControlName="email" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('email')!.valid &&
+          customerForm.get('email')!.touched
+        ">
+        Please enter a valid email!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput required formControlName="firstName" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('firstName')!.valid &&
+          customerForm.get('firstName')!.touched
+        ">
+        Please enter a first name!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput required formControlName="lastName" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('lastName')!.valid &&
+          customerForm.get('lastName')!.touched
+        ">
+        Pleas Please enter a last name!
+      </mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="buttons-container">
+      <button
+        color="accent"
+        type="button"
+        mat-raised-button
+        (click)="onCancel()">
+        Cancel
+      </button>
+      <button
+        color="primary"
+        type="submit"
+        mat-raised-button
+        [disabled]="!customerForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
 </ng-template>

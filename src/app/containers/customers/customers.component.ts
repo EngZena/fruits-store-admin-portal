@@ -1,4 +1,12 @@
+import * as pattrens from '../../core/constants/pattrens';
+
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  Validators,
+} from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
 import { CustomerModel } from '@core/models/cusromer.model';
@@ -17,6 +25,20 @@ export class CustomersComponent {
   showDetails: boolean = false;
   choosedCustomer!: CustomerModel;
   customerUserName: string = '';
+  customerForm: FormGroup = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(pattrens.emailPattren),
+    ]),
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+  });
   @ViewChild('customerEditTemplate')
   customerEditTemplate!: TemplateRef<any>;
   @ViewChild('customerDeleteTemplate')
@@ -62,8 +84,9 @@ export class CustomersComponent {
 
   openEditDialog(customer: CustomerModel, id: number): void {
     this.choosedCustomer = customer;
+    this.setCustomerEditForm(customer);
     const isDarkTheme = localStorage.getItem('darkTheme');
-    let dialogRef = this.dialog.open(DialogComponent, {
+    this.dialog.open(DialogComponent, {
       width: '250px',
       data: {
         customer: customer,
@@ -72,16 +95,14 @@ export class CustomersComponent {
         template: this.customerEditTemplate,
         submitButtonLabel: 'Save',
         cancelButtonLabel: 'Cancel',
+        actions: true,
       },
       backdropClass: 'backdrop-background',
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (typeof result === 'object') {
-        this.customersList =
-          this.customersLocalStorageService.editCustomerByUserName(result);
-      }
-    });
+  onCancel() {
+    this.dialog.closeAll();
   }
 
   getCustomersData() {
@@ -106,5 +127,24 @@ export class CustomersComponent {
       };
       this.customersList.push(element);
     });
+  }
+
+  setCustomerEditForm(customer: CustomerModel) {
+    this.customerForm.get('email')?.setValue(customer.email);
+    this.customerForm.get('firstName')?.setValue(customer.firstName);
+    this.customerForm.get('lastName')?.setValue(customer.lastName);
+  }
+
+  saveCustomerDetails(formDirective: FormGroupDirective) {
+    if (!this.customerForm.valid) return;
+    const result = this.choosedCustomer;
+    result.email = this.customerForm.get('email')?.value;
+    result.firstName = this.customerForm.get('firstName')?.value;
+    result.lastName = this.customerForm.get('lastName')?.value;
+    this.customersList =
+      this.customersLocalStorageService.editCustomerByUserName(result);
+    this.customerForm.reset();
+    formDirective.resetForm();
+    this.dialog.closeAll();
   }
 }
