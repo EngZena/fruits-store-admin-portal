@@ -51,9 +51,10 @@ export class CustomersComponent {
     this.getCustomersData();
     this.customersLocalStorageService.resetCustomerData.subscribe(
       (data: Boolean) => {
-        if (data == true) {
+        if (data === true) {
           this.customersList =
             this.customersLocalStorageService.getCustomersData();
+          this.customersDataExist = true;
         }
       }
     );
