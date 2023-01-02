@@ -1,10 +1,4 @@
-import * as fromApp from '@store/app.reducer';
-import * as fromProductsActions from '@containers/products/store/products.actions';
-
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-
-import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-add-new-poduct-component',
