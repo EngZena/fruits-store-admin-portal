@@ -36,14 +36,21 @@ export class ProductFormComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {
-    if (this.editProductFormMode) {
+    if (this.editProductFormMode && this.productData !== undefined) {
       this.productForm.get('id')?.setValue(this.productData.id);
       this.productForm.get('name')?.setValue(this.productData.name);
       this.productForm.get('price')?.setValue(this.productData.price);
       this.productForm.get('fruitType')?.setValue(this.productData.fruitType);
       this.productForm.get('image')?.setValue(this.productData.image);
       this.productForm.get('imageName')?.setValue(this.productData.imageName);
-      this.imageURL = `../../../assets/products/${this.productData.imageName}`;
+      this.imageURL = this.productData.image;
+    }
+    if (this.editProductFormMode && this.productData === undefined) {
+      /**
+       * The expected code would retrieve product data from the backend, but because this option does not exist,
+       * it will redirect to the product page.
+       */
+      this.router.navigate(['products']);
     }
   }
 
@@ -57,7 +64,7 @@ export class ProductFormComponent implements OnInit {
     document.getElementById('fileInput')!.click();
   }
 
-  selectFile(imageInput: any) {
+  selectImage(imageInput: any) {
     if (
       (!imageInput.files[0] || imageInput.files[0].length == 0) &&
       this.productForm.get('image')?.value === null
@@ -68,6 +75,15 @@ export class ProductFormComponent implements OnInit {
 
     if (imageInput.files.length === 0) return;
     const mimeType = imageInput.files[0].type;
+
+    if (
+      this.productForm.get('name')?.value == null ||
+      this.productForm.get('name')?.value == ''
+    ) {
+      this.productForm
+        .get('name')
+        ?.setValue(imageInput.files[0].name.split('.')[0]);
+    }
 
     if (mimeType.match(/image\/*/) == null) {
       this.imageMsg = 'Only images are supported';

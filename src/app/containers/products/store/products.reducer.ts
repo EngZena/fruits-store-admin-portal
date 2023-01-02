@@ -36,7 +36,7 @@ const initializeProducts = (
   const productsList: ProductModel[] = [];
   action.payload.forEach(product => {
     let productItem: ProductModel = {
-      id: getRandomInt().toString(),
+      id: product.id,
       name: product.name,
       image: product.image,
       imageName: product.imageName,
