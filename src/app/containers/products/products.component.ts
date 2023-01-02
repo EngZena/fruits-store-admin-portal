@@ -9,6 +9,7 @@ import { FruitModel, FruitType, ProductModel } from '@core/models/FruitModel';
 import { Observable, Subscription, forkJoin, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
+import { FruitsImagesService } from '@core/services/apis/fruitsImages.service';
 import { Store } from '@ngrx/store';
 import { SummerFruitsService } from '@core/services/apis/SummerFruits.service';
 import { WinterFruitsService } from '@core/services/apis/WinterFruits.service';
@@ -37,9 +38,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   firstRender: boolean = true;
   emptyProducts: Observable<boolean> = of(false);
   noProducts: boolean = true;
+  initialDataLength = 0;
+  index = 0;
   constructor(
     private summerFruitsService: SummerFruitsService,
     private winterFruitsService: WinterFruitsService,
+    private fruitsImagesService: FruitsImagesService,
     private store: Store<fromApp.AppState>,
     private router: Router,
     private route: ActivatedRoute
@@ -54,10 +58,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.isLoading = true;
           let value$ = this.loadData();
           value$.subscribe(() => {
-            this.store.dispatch(
-              new fromProductsActions.InitializeProducts(this.allFruits)
-            );
-            this.isLoading = false;
+            if (this.allFruits.length > 0) {
+              this.store.dispatch(
+                new fromProductsActions.InitializeProducts(this.allFruits)
+              );
+            }
           });
         }
       });
@@ -113,38 +118,62 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.winterFruitsService.getWinterFruits()
     ).pipe(
       map(([summerFruits, winterFruits]) => {
+        this.initialDataLength = summerFruits.length + winterFruits.length;
         this.setAllFruits(summerFruits, FruitType.summerFruits);
         this.setAllFruits(winterFruits, FruitType.winterFruits);
-        this.initializeData(summerFruits, winterFruits);
       })
     );
   }
 
-  initializeData(summerFruits: FruitModel[], winterFruits: FruitModel[]) {
-    this.summerFruitsArray = summerFruits;
+  initializeData() {
+    this.summerFruitsArray = this.allFruits.filter(
+      fruit => fruit.fruitType === FruitType.summerFruits
+    );
     this.summerFruitsPage = paginationFunctions.pagination(
       this.summerFruitsArray,
       4,
       1
     );
-    this.winterFruitsArray = winterFruits;
+    this.winterFruitsArray = this.allFruits.filter(
+      fruit => fruit.fruitType === FruitType.winterFruits
+    );
     this.winterFruitsPage = paginationFunctions.pagination(
       this.winterFruitsArray,
       4,
       1
     );
+    this.store.dispatch(
+      new fromProductsActions.InitializeProducts(this.allFruits)
+    );
+    this.isLoading = false;
   }
 
   setAllFruits(array: FruitModel[], type: FruitType) {
+    /**
+     * The best behavior is to execute navigation from the backend side and retrieve only four products per type;
+     *  however, because this option does not exist, all functions will be executed in the frontend side,
+     *  causing the app to be slow on initialization due to the presence of images.
+     */
     array.forEach(element => {
-      this.allFruits.push({
-        id: element.id,
-        name: element.name,
-        imageName: element.image,
-        image: element.image,
-        price: element.price,
-        fruitType: type,
-      });
+      this.fruitsImagesService
+        .getFruitImage(element.image.split('.')[0])
+        .subscribe((data: any) => {
+          this.index++;
+          this.allFruits = [
+            ...this.allFruits,
+            {
+              id: this.index.toString(),
+              name: element.name,
+              imageName: element.image,
+              image: data[0],
+              price: element.price,
+              fruitType: type,
+            },
+          ];
+          if (this.initialDataLength === this.index) {
+            this.initializeData();
+          }
+        });
     });
   }
 

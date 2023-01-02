@@ -20,7 +20,7 @@
         *ngFor="let item of summerFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.imageName }}"
+        image="{{ item.image }}"
         category="summerFruits"
         (productDeleted)="deleteProductById(item.id)"
         (productEdited)="editProductById(item.id)">
@@ -62,7 +62,7 @@
         *ngFor="let item of winterFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.imageName }}"
+        image="{{ item.image }}"
         category="winterFruits"
         (productDeleted)="deleteProductById(item.id)"
         (productEdited)="editProductById(item.id)">
