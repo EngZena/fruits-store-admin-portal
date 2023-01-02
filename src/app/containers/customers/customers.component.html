@@ -6,18 +6,90 @@
       <mat-card-title>{{ customer.userName }}</mat-card-title>
       <mat-card-subtitle>{{ customer.email }}</mat-card-subtitle>
       <mat-card-subtitle>{{ customer.gender }}</mat-card-subtitle>
-      <mat-card-content *ngIf="customer.showDetails">
+      <mat-card-content>
         <p>{{ customer.firstName }} {{ customer.lastName }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button
           mat-stroked-button
           color="primary"
-          (click)="toggleShowDetails(i)">
-          Details
+          (click)="openEditDialog(customer, i)">
+          Edit
         </button>
-        <button mat-stroked-button color="accent">REMOVE</button>
+        <button
+          mat-stroked-button
+          color="accent"
+          (click)="openRemoveDialog(customer.userName, i)">
+          REMOVE
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
 </ng-container>
+
+<ng-container *ngIf="!customersDataExist || customersList.length === 0">
+  <div class="text-container">
+    <p>All customers have been removed.</p>
+  </div>
+</ng-container>
+
+<ng-template #customerDeleteTemplate>
+  <p>Are you sure you want to remove {{ customerUserName }}?</p>
+</ng-template>
+
+<ng-template #customerEditTemplate>
+  <form
+    [formGroup]="customerForm"
+    #formDirective="ngForm"
+    (ngSubmit)="saveCustomerDetails(formDirective)">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" required formControlName="email" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('email')!.valid &&
+          customerForm.get('email')!.touched
+        ">
+        Please enter a valid email!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput required formControlName="firstName" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('firstName')!.valid &&
+          customerForm.get('firstName')!.touched
+        ">
+        Please enter a first name!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput required formControlName="lastName" />
+      <mat-error
+        *ngIf="
+          !customerForm.get('lastName')!.valid &&
+          customerForm.get('lastName')!.touched
+        ">
+        Pleas Please enter a last name!
+      </mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="buttons-container">
+      <button
+        color="accent"
+        type="button"
+        mat-raised-button
+        (click)="onCancel()">
+        Cancel
+      </button>
+      <button
+        color="primary"
+        type="submit"
+        mat-raised-button
+        [disabled]="!customerForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</ng-template>

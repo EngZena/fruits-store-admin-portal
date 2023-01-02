@@ -7,6 +7,14 @@
     color: mat-color($primary);
   }
 }
+.center-content {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
 .products-container {
   margin-top: 2rem;
@@ -25,6 +33,9 @@ h3 {
   justify-content: space-evenly;
   margin-top: 20px;
   margin-bottom: 20px;
+  button:disabled {
+    cursor: not-allowed;
+  }
   button {
     color: $white_color;
     border: 0;
@@ -38,9 +49,6 @@ h3 {
   }
 }
 
-button:disabled {
-  cursor: not-allowed;
-}
 .btnPrimary {
   filter: $pink_color_filter;
 }

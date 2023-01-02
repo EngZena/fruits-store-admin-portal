@@ -2,43 +2,43 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
-  template: '<div class="loading" ><div class="lds-hourglass"></div></div>',
+  template: `<div class="spinner-6"></div>`,
   styles: [
     `
-      .lds-hourglass {
-        display: inline-block;
-        position: relative;
-        width: 250px;
-        height: 250px;
-      }
-      .lds-hourglass:after {
-        content: ' ';
-        display: block;
+      .spinner-6 {
+        width: 200px;
+        height: 200px;
+        display: grid;
+        border: 4px solid #0000;
         border-radius: 50%;
-        width: 0;
-        height: 0;
-        margin: 8px;
-        box-sizing: border-box;
-        border: 100px solid #e5d41a;
-        border-color: #e5d41a transparent #e5d41a transparent;
-        animation: lds-hourglass 1.2s infinite;
+        border-color: #ccc #0000;
+        animation: s6 1s infinite linear;
       }
-      @keyframes lds-hourglass {
-        0% {
-          transform: rotate(0);
-          animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-        }
-        50% {
-          transform: rotate(900deg);
-          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
+
+      .spinner-6::before,
+      .spinner-6::after {
+        content: '';
+        grid-area: 1/1;
+        margin: 10px;
+        border: inherit;
+        border-radius: 50%;
+      }
+
+      .spinner-6::before {
+        border-color: #f03355 #0000;
+        animation: inherit;
+        animation-duration: 0.5s;
+        animation-direction: reverse;
+      }
+
+      .spinner-6::after {
+        margin: 20px;
+      }
+
+      @keyframes s6 {
         100% {
-          transform: rotate(1800deg);
+          transform: rotate(1turn);
         }
-      }
-      .loading {
-        text-align: center;
-        margin-top: 10%;
       }
     `,
   ],

@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FruitType } from '@core/models/FruitsModel';
+import { FruitType } from '@core/models/FruitModel';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,7 @@ import { FruitType } from '@core/models/FruitsModel';
 })
 export class CardComponent {
   @Input()
-  imgName: string = '';
+  image: string = '';
 
   @Input()
   name: string = '';
@@ -19,4 +19,18 @@ export class CardComponent {
 
   @Input()
   category!: FruitType;
+
+  @Output()
+  productDeleted: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  productEdited: EventEmitter<any> = new EventEmitter();
+
+  deleteProduct() {
+    this.productDeleted.emit();
+  }
+
+  editProduct() {
+    this.productEdited.emit();
+  }
 }

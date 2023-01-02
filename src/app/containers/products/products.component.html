@@ -1,7 +1,18 @@
-<div *ngIf="isLoading">
+<div *ngIf="isLoading" class="center-content">
   <app-loading></app-loading>
 </div>
 <div *ngIf="!isLoading" class="products-container">
+  <div fxLayout="row">
+    <div fxFlex="88" fxFlex.sm="75" fxFlex.xs="50"></div>
+    <div
+      fxFlex="12"
+      [ngClass]="{ 'center-content': (emptyProducts | async) }"
+      [ngStyle]="{ 'display: table': (emptyProducts | async) }">
+      <button mat-raised-button color="primary" (click)="addNewProduct()">
+        Add New Fruit
+      </button>
+    </div>
+  </div>
   <div *ngIf="summerFruitsPage.length > 0">
     <h3 class="header">Summer Fruits</h3>
     <div class="cardContainer">
@@ -9,8 +20,10 @@
         *ngFor="let item of summerFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.image }}"
-        category="summerFruits">
+        image="{{ item.image }}"
+        category="summerFruits"
+        (productDeleted)="deleteProductById(item.id)"
+        (productEdited)="editProductById(item.id)">
       </app-card>
     </div>
     <div>
@@ -31,7 +44,7 @@
           <button
             class="btnPrimary"
             (click)="NextPage(currentSummerPage, summerFruitsArray, 'summer')"
-            [disabled]="currentSummerPage === 3">
+            [disabled]="currentSummerPage === summerFruitsPages">
             <img
               src="../../../assets/svg/arrow-right-circle-fill.svg"
               class="icon" />
@@ -49,8 +62,10 @@
         *ngFor="let item of winterFruitsPage"
         name="{{ item.name }}"
         price="{{ item.price }}"
-        imgName="{{ item.image }}"
-        category="winterFruits">
+        image="{{ item.image }}"
+        category="winterFruits"
+        (productDeleted)="deleteProductById(item.id)"
+        (productEdited)="editProductById(item.id)">
       </app-card>
     </div>
     <div>
@@ -71,7 +86,7 @@
           <button
             class="btnPrimary"
             (click)="NextPage(currentWinterPage, winterFruitsArray, 'winter')"
-            [disabled]="currentWinterPage === 3">
+            [disabled]="currentWinterPage === winterFruitsPages">
             <img
               src="../../../assets/svg/arrow-right-circle-fill.svg"
               class="icon" />

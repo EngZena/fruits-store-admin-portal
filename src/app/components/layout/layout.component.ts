@@ -22,12 +22,13 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.themeService.getDarkTheme();
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
 
   toggleDarkTheme() {
-    this.isLightTheme = !this.isLightTheme;
     this.themeService.setDarkTheme(this.isLightTheme);
+    this.isLightTheme = !this.isLightTheme;
   }
 
   logout() {

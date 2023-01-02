@@ -1,4 +1,5 @@
 import { CardComponent } from './card/card.component';
+import { DialogComponent } from './dialog/dialog.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoadingComponent } from './loading/loading.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ const declaredComponents = [
   LayoutComponent,
   LoadingComponent,
   CardComponent,
+  DialogComponent,
 ];
 
 @NgModule({
