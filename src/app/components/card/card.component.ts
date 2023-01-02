@@ -9,7 +9,7 @@ import { FruitType } from '@core/models/FruitModel';
 })
 export class CardComponent {
   @Input()
-  imgName: string = '';
+  image: string = '';
 
   @Input()
   name: string = '';
