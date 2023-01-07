@@ -28,28 +28,22 @@
     </div>
     <div>
       <div class="btnContainer">
-        <div>
-          <button
-            class="btnSecondary"
-            (click)="
-              PreviousPage(currentSummerPage, summerFruitsArray, 'summer')
-            "
-            [disabled]="currentSummerPage === 1">
-            <img
-              src="../../../assets/svg/arrow-left-circle-fill.svg"
-              class="icon" />
-          </button>
-        </div>
-        <div>
-          <button
-            class="btnPrimary"
-            (click)="NextPage(currentSummerPage, summerFruitsArray, 'summer')"
-            [disabled]="currentSummerPage === summerFruitsPages">
-            <img
-              src="../../../assets/svg/arrow-right-circle-fill.svg"
-              class="icon" />
-          </button>
-        </div>
+        <button
+          color="accent"
+          mat-icon-button
+          aria-label="arrow_back"
+          (click)="PreviousPage(currentSummerPage, summerFruitsArray, 'summer')"
+          [disabled]="currentSummerPage === 1">
+          <mat-icon class="icon">arrow_back</mat-icon>
+        </button>
+        <button
+          color="accent"
+          mat-icon-button
+          aria-label="arrow_forward"
+          (click)="NextPage(currentSummerPage, summerFruitsArray, 'summer')"
+          [disabled]="currentSummerPage === summerFruitsPages">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+        </button>
       </div>
     </div>
   </div>
@@ -70,28 +64,22 @@
     </div>
     <div>
       <div class="btnContainer">
-        <div>
-          <button
-            class="btnSecondary"
-            (click)="
-              PreviousPage(currentWinterPage, winterFruitsArray, 'winter')
-            "
-            [disabled]="currentWinterPage === 1">
-            <img
-              src="../../../assets/svg/arrow-left-circle-fill.svg"
-              class="icon" />
-          </button>
-        </div>
-        <div>
-          <button
-            class="btnPrimary"
-            (click)="NextPage(currentWinterPage, winterFruitsArray, 'winter')"
-            [disabled]="currentWinterPage === winterFruitsPages">
-            <img
-              src="../../../assets/svg/arrow-right-circle-fill.svg"
-              class="icon" />
-          </button>
-        </div>
+        <button
+          color="accent"
+          mat-icon-button
+          aria-label="arrow_back"
+          (click)="PreviousPage(currentWinterPage, winterFruitsArray, 'winter')"
+          [disabled]="currentWinterPage === 1">
+          <mat-icon class="icon">arrow_back</mat-icon>
+        </button>
+        <button
+          color="accent"
+          mat-icon-button
+          aria-label="arrow_forward"
+          (click)="NextPage(currentWinterPage, winterFruitsArray, 'winter')"
+          [disabled]="currentWinterPage === winterFruitsPages">
+          <mat-icon class="icon">arrow_forward</mat-icon>
+        </button>
       </div>
     </div>
   </div>
