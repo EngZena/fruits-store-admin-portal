@@ -55,23 +55,11 @@
       </button>
       <button
         mat-icon-button
-        aria-label="open person menu"
-        [matMenuTriggerFor]="belowMenu">
-        <mat-icon>person</mat-icon>
-        <mat-menu #belowMenu="matMenu" yPosition="below">
-          <div fxLayout="column" fxLayoutAlign="center center">
-            <div class="user-menu">
-              <a routerLink="profile" class="item">
-                <span>Profile</span>
-              </a>
-            </div>
-            <div class="user-menu">
-              <a routerLink="" (click)="logout()" class="item">
-                <span>Logout</span>
-              </a>
-            </div>
-          </div>
-        </mat-menu>
+        aria-label="logout"
+        (click)="logout()"
+        class="flip_icon"
+        fxFlexOffset="20px">
+        <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>
     <div class="w-100">
