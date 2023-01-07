@@ -36,29 +36,11 @@ h3 {
   button:disabled {
     cursor: not-allowed;
   }
-  button {
-    color: $white_color;
-    border: 0;
-    background: transparent;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    img {
-      height: fit-content;
-    }
-  }
-}
-
-.btnPrimary {
-  filter: $pink_color_filter;
-}
-.btnSecondary {
-  filter: $green_color_filter;
-}
-.icon {
-  width: 30px;
 }
 .loading {
   text-align: center;
   margin-top: 10%;
+}
+.icon {
+  transform: scale(1.2);
 }
