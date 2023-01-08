@@ -9,7 +9,6 @@ import { LoginPageComponent } from '@containers/login-page/login-page.component'
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from '@components/page-not-found/page-not-found.component';
 import { ProductsComponent } from '@containers/products/products.component';
-import { ProfileComponent } from '@containers/profile/profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -37,7 +36,6 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
