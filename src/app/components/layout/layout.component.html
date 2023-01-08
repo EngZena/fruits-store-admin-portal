@@ -42,18 +42,26 @@
         </div>
       </div>
       <button
+        *ngIf="!this.isLightTheme"
+        mat-icon-button
+        aria-label="toggle wb_sunny"
+        (click)="toggleDarkTheme()"
+        class="icon_button">
+        <mat-icon>wb_sunny</mat-icon>
+      </button>
+      <button
+        *ngIf="this.isLightTheme"
         mat-icon-button
         aria-label="toggle dark_mode"
         (click)="toggleDarkTheme()"
-        fxFlexOffset="20px">
-        <mat-icon>dark_mode</mat-icon>
+        class="icon_button moon_icon">
+        <mat-icon>brightness_3</mat-icon>
       </button>
       <button
         mat-icon-button
         aria-label="logout"
         (click)="logout()"
-        class="flip_icon"
-        fxFlexOffset="20px">
+        class="flip_icon">
         <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>
