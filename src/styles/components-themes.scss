@@ -1,5 +1,7 @@
 @import '../app/components/card/card.component.scss';
+@import '../app/components/loading/loading.component.scss';
 
 @mixin components-themes($theme) {
   @include card-border-theme($theme);
+  @include loading-border-theme($theme);
 }
