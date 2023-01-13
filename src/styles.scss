@@ -17,13 +17,3 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
-.primary {
-  background-color: $pink_color;
-  border-color: $pink_color;
-  color: $white_color;
-}
-.secondary {
-  background-color: $green_color;
-  border-color: $green_color;
-  color: $white_color;
-}
