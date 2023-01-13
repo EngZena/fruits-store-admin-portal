@@ -10,12 +10,12 @@ export class ThemeService {
   darkTheme!: any;
 
   getDarkTheme() {
-    if (localStorage.getItem('darkTheme') !== 'undefined') {
-      this.darkTheme = localStorage.getItem('darkTheme');
+    if (JSON.stringify(localStorage.getItem('darkTheme')) === 'null') {
+      this.setDarkTheme(false);
     } else {
-      this.darkTheme = false;
+      this.darkTheme = localStorage.getItem('darkTheme');
+      this.setDarkTheme(JSON.parse(this.darkTheme));
     }
-    this.setDarkTheme(JSON.parse(this.darkTheme));
     return this.darkTheme;
   }
 
