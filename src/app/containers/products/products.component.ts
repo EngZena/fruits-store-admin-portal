@@ -1,6 +1,6 @@
 import * as fromApp from '@store/app.reducer';
 import * as fromProductsActions from '@containers/products/store/products.actions';
-import * as paginationFunctions from '../../core/services/utils';
+import * as paginationFunctions from '@core/services/utils';
 import * as serviceUtils from '@core/services/utils/service.utils';
 
 import { ActivatedRoute, Router } from '@angular/router';
