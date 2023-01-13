@@ -40,9 +40,6 @@ export class LoginPageComponent {
     const password = this.passwordFormControl.value;
     switch (actionType) {
       case 'signUp':
-        this.authService
-          .saveAdminsData(this.emailFormControl.value)
-          .subscribe();
         this.store.dispatch(
           new fromActions.SignUpStart({
             email: email,

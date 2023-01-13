@@ -83,6 +83,9 @@ export class AuthEffects {
           .pipe(
             tap(resData => {
               this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+              this.authService
+                .saveAdminsData(signupAction.payload.email)
+                .subscribe();
             }),
             map(resData => {
               return handleAuthentication(
