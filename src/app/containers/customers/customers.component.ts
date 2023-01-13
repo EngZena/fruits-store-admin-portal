@@ -1,4 +1,4 @@
-import * as pattrens from '../../core/constants/pattrens';
+import * as pattrens from '@core/constants/pattrens';
 
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {
