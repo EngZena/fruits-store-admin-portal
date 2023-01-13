@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@core/models/usesr.model';
-import { adminEmail } from '../admin.data';
 import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
 
@@ -118,11 +117,9 @@ export class AuthEffects {
             this.authService.setLogoutTimer(+resDate.expiresIn * 1000);
           }),
           map(resData => {
-            if (resData.email === adminEmail) {
-              this.cookiesService.setCookie('email', resData.email);
-              this.cookiesService.setCookie('token', resData.idToken);
-              this.cookiesService.setCookie('userId', resData.localId);
-            }
+            this.cookiesService.setCookie('email', resData.email);
+            this.cookiesService.setCookie('token', resData.idToken);
+            this.cookiesService.setCookie('userId', resData.localId);
             return handleAuthentication(
               +resData.expiresIn,
               resData.email,
@@ -142,9 +139,7 @@ export class AuthEffects {
     ofType(AuthActions.AUTHENTICATE_SUCCESS),
     tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
       if (authSuccessAction.payload.redirect) {
-        if (authSuccessAction.payload.email === adminEmail) {
-          this.router.navigate(['/products']);
-        }
+        this.router.navigate(['/products']);
       }
     })
   );
