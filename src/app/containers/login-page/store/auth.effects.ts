@@ -1,4 +1,5 @@
 import * as AuthActions from './auth.actions';
+import * as ErrosConstants from '@core/constants/index';
 import * as services from '@core/services/apis/http-instanse';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -43,16 +44,19 @@ const handleAuthentication = (
 };
 
 const handleError = (errorResponse: any) => {
-  let errorMessage = 'An unknown error occurred';
+  let errorMessage = ErrosConstants.ERROR;
   if (!errorResponse.error || !errorResponse.error.error) {
     return of(new AuthActions.AuthenticateFail(errorMessage));
   }
   switch (errorResponse.error.error.message) {
     case 'EMAIL_NOT_FOUND':
-      errorMessage = ' This email does not exist';
+      errorMessage = ErrosConstants.EMAIL_NOT_FOUND;
       break;
     case 'INVALID_PASSWORD':
-      errorMessage = 'This password is not correct';
+      errorMessage = ErrosConstants.INVALID_PASSWORD;
+      break;
+    case 'EMAIL_EXISTS':
+      errorMessage = ErrosConstants.EMAIL_EXISTS;
       break;
   }
   return of(new AuthActions.AuthenticateFail(errorMessage));
@@ -99,8 +103,11 @@ export class AuthEffects {
               );
             }),
             catchError(errorRes => {
-              this.snackBarService.error(errorRes.error.error.message);
-              return handleError(errorRes);
+              const error = handleError(errorRes);
+              error.subscribe((data: AuthActions.AuthenticateFail) => {
+                this.snackBarService.error(data.payload);
+              });
+              return error;
             })
           );
       })
@@ -136,7 +143,10 @@ export class AuthEffects {
               );
             }),
             catchError(errorRes => {
-              this.snackBarService.error(errorRes.error.error.message);
+              const error = handleError(errorRes);
+              error.subscribe((data: AuthActions.AuthenticateFail) => {
+                this.snackBarService.error(data.payload);
+              });
               return handleError(errorRes);
             })
           );
