@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -28,6 +29,7 @@ const materialModules = [
   MatProgressBarModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatSnackBarModule,
   MatInputModule,
   MatIconModule,
   MatSelectModule,
