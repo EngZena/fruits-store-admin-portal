@@ -17,3 +17,15 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+
+.snackbar-error {
+  background-color: $red_error_color;
+}
+
+.snackbar-success {
+  background-color: $green_color;
+}
+
+.snackbar-info {
+  background-color: $blue_color;
+}
