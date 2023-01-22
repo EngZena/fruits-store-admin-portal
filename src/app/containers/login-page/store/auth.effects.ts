@@ -9,6 +9,7 @@ import { CookiesService } from '@core/services/cookies.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { SnackBarService } from '@core/services/snack-bar/snack-bar.component';
 import { User } from '@core/models/usesr.model';
 import { environment } from 'src/environments/environment';
 import { of } from 'rxjs';
@@ -64,7 +65,8 @@ export class AuthEffects {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private cookiesService: CookiesService
+    private cookiesService: CookiesService,
+    private snackBarService: SnackBarService
   ) {}
 
   authSignup$ = createEffect(() =>
@@ -88,6 +90,7 @@ export class AuthEffects {
                 .subscribe();
             }),
             map(resData => {
+              this.snackBarService.success('Account successfully created');
               return handleAuthentication(
                 +resData.expiresIn,
                 resData.email,
@@ -96,6 +99,7 @@ export class AuthEffects {
               );
             }),
             catchError(errorRes => {
+              this.snackBarService.error(errorRes.error.error.message);
               return handleError(errorRes);
             })
           );
@@ -132,6 +136,7 @@ export class AuthEffects {
               );
             }),
             catchError(errorRes => {
+              this.snackBarService.error(errorRes.error.error.message);
               return handleError(errorRes);
             })
           );
