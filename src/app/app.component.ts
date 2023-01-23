@@ -66,5 +66,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
         this.isAuthenticated.next(false);
       }
     });
+    if (!this.isAuthenticated.value) {
+      this.router.navigate(['/login']);
+    }
   }
 }
