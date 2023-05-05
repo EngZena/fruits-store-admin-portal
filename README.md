@@ -1,12 +1,10 @@
-###FruitsStoreAdminPortal
-
+### FruitsStoreAdminPortal
 ----------------------------
 
 This is the customer relationship manager website created for technical proof of some concepts using an Angular framework.
 
 
-###Used libraries
-
+### Used libraries
 ----------------------------
   
   + [material ui library](https://material.angular.io/)
@@ -20,8 +18,7 @@ This is the customer relationship manager website created for technical proof of
   + [prettier](https://prettier.io/)
 
 
-###Features added to the project:
-
+### Features added to the project:
 ----------------------------
   + Dark theme.
   + Setup ESLINT with prettier and husky to run ESLINT rules automatically.
@@ -63,6 +60,5 @@ This is the customer relationship manager website created for technical proof of
 
 
 ## Development server
-
 ----------------------------
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
