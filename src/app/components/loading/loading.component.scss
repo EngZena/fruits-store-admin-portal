@@ -1,0 +1,42 @@
+@import '@angular/material/theming';
+@import '../../../assets/scss/constants.scss';
+
+@mixin loading-border-theme($theme) {
+  $primary: map-get($map: ($theme),$key: primary);
+
+  .spinner-6 {
+    width: 200px;
+    height: 200px;
+    display: grid;
+    border: 4px solid $black_color;
+    border-radius: 50%;
+    border-color: $gray_color $black_color;
+    animation: s6 1s infinite linear;
+  }
+
+  .spinner-6::before,
+  .spinner-6::after {
+    content: '';
+    grid-area: 1/1;
+    margin: 10px;
+    border: inherit;
+    border-radius: 50%;
+  }
+
+  .spinner-6::before {
+    border-color: mat-color($primary) $black_color;
+    animation: inherit;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+  }
+
+  .spinner-6::after {
+    margin: 20px;
+  }
+
+  @keyframes s6 {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+}

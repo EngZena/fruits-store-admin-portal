@@ -3,6 +3,7 @@ import * as fromApp from '@store/app.reducer';
 
 import { FormControl, Validators } from '@angular/forms';
 
+import { AuthService } from '@core/services/auth.service';
 import { Component } from '@angular/core';
 import { FormControlErrorsService } from '@core/Handlers/form-controls-errors.service';
 import { Store } from '@ngrx/store';
@@ -17,7 +18,10 @@ export class LoginPageComponent {
   loading = false;
   matcher = new FormControlErrorsService();
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private authService: AuthService
+  ) {}
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -29,17 +33,30 @@ export class LoginPageComponent {
     this.hide = !this.hide;
   }
 
-  onSubmit() {
+  onSubmit(actionType: string) {
     if (!(this.emailFormControl.valid && this.passwordFormControl.valid))
       return;
     const email = this.emailFormControl.value;
     const password = this.passwordFormControl.value;
-    this.store.dispatch(
-      new fromActions.LoginStart({
-        email: email,
-        password: password,
-      })
-    );
+    switch (actionType) {
+      case 'signUp':
+        this.store.dispatch(
+          new fromActions.SignUpStart({
+            email: email,
+            password: password,
+          })
+        );
+        break;
+      case 'login':
+        this.store.dispatch(
+          new fromActions.LoginStart({
+            email: email,
+            password: password,
+          })
+        );
+        break;
+    }
+
     this.emailFormControl.reset();
     this.passwordFormControl.reset();
   }

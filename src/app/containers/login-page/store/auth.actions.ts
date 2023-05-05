@@ -38,6 +38,13 @@ export class LoginStart implements Action {
   }
 }
 
+export class SignUpStart implements Action {
+  readonly type = SIGNUP_START;
+  constructor(public payload: { email: string; password: string }) {
+    console.log('\x1b[34m%s\x1b[0m', SIGNUP_START);
+  }
+}
+
 export class AuthenticateFail implements Action {
   readonly type = AUTHENTICATE_FAIL;
   constructor(public payload: string) {
@@ -63,6 +70,7 @@ export type AuthActions =
   | AuthenticateSuccess
   | AuthenticateFail
   | LoginStart
+  | SignUpStart
   | Logout
   | AutoLogin
   | ClearError;

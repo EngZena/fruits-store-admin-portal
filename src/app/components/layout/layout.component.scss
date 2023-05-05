@@ -23,13 +23,20 @@ mat-drawer-content {
   min-height: 100vh;
 }
 
-.user-menu {
-  margin: 10px;
-}
-
 .nav {
   cursor: pointer;
 }
 .w-100 {
   width: 100%;
+}
+.flip_icon {
+  transform: rotate(-90deg) scale(1.1);
+}
+
+.icon_button {
+  margin: 4px 15px 0;
+}
+
+.moon_icon {
+  transform: rotate(160deg);
 }

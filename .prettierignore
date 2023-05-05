@@ -45,3 +45,6 @@ testem.log
 Thumbs.db
 package-lock.json
 package-lock.json
+
+# scss files
+*.scss

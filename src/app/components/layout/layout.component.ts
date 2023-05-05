@@ -27,8 +27,8 @@ export class LayoutComponent implements OnInit {
   }
 
   toggleDarkTheme() {
-    this.themeService.setDarkTheme(this.isLightTheme);
     this.isLightTheme = !this.isLightTheme;
+    this.themeService.setDarkTheme(!this.isLightTheme);
   }
 
   logout() {

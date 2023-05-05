@@ -11,11 +11,6 @@
           <span>Customers</span>
         </a>
       </div>
-      <div (click)="drawer.toggle()" class="item menu-item">
-        <a routerLink="profile">
-          <span>Profile</span>
-        </a>
-      </div>
     </div>
   </mat-drawer>
   <mat-drawer-content fxLayout="column" fxLayoutAlign="start center">
@@ -47,31 +42,27 @@
         </div>
       </div>
       <button
+        *ngIf="!this.isLightTheme"
+        mat-icon-button
+        aria-label="toggle wb_sunny"
+        (click)="toggleDarkTheme()"
+        class="icon_button">
+        <mat-icon>wb_sunny</mat-icon>
+      </button>
+      <button
+        *ngIf="this.isLightTheme"
         mat-icon-button
         aria-label="toggle dark_mode"
         (click)="toggleDarkTheme()"
-        fxFlexOffset="20px">
-        <mat-icon>dark_mode</mat-icon>
+        class="icon_button moon_icon">
+        <mat-icon>brightness_3</mat-icon>
       </button>
       <button
         mat-icon-button
-        aria-label="open person menu"
-        [matMenuTriggerFor]="belowMenu">
-        <mat-icon>person</mat-icon>
-        <mat-menu #belowMenu="matMenu" yPosition="below">
-          <div fxLayout="column" fxLayoutAlign="center center">
-            <div class="user-menu">
-              <a routerLink="profile" class="item">
-                <span>Profile</span>
-              </a>
-            </div>
-            <div class="user-menu">
-              <a routerLink="" (click)="logout()" class="item">
-                <span>Logout</span>
-              </a>
-            </div>
-          </div>
-        </mat-menu>
+        aria-label="logout"
+        (click)="logout()"
+        class="flip_icon">
+        <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>
     <div class="w-100">

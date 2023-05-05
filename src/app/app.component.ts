@@ -41,8 +41,10 @@ export class AppComponent implements OnInit, AfterContentChecked {
         )
       )
       .subscribe((event: NavigationEnd) => {
-        if (event.id === 1 && event.url === event.urlAfterRedirects) {
-          this.customersLocalStorageService.resetCustomersData();
+        if (this.isAuthenticated.value) {
+          if (event.id === 1 && event.url === event.urlAfterRedirects) {
+            this.customersLocalStorageService.resetCustomersData();
+          }
         }
       });
   }
@@ -64,5 +66,8 @@ export class AppComponent implements OnInit, AfterContentChecked {
         this.isAuthenticated.next(false);
       }
     });
+    if (!this.isAuthenticated.value) {
+      this.router.navigate(['/login']);
+    }
   }
 }

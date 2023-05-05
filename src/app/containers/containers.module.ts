@@ -6,7 +6,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { ProductFormComponent } from './products/ProductForm/product-form.component';
 import { ProductsComponent } from './products/products.component';
-import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/Shared.module';
 
 const declaredContainers = [
@@ -16,7 +15,6 @@ const declaredContainers = [
   ProductFormComponent,
   AddNewProductComponent,
   EditProductComponent,
-  ProfileComponent,
 ];
 @NgModule({
   declarations: [...declaredContainers],
