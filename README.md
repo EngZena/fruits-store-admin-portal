@@ -49,10 +49,10 @@ This is the customer relationship manager website created for technical proof of
   + Handle errors globally using http interceptor. 
   + Shared components
     + dialog component
-     + get content as template from parent component.	
+       + get content as template from parent component.	
     + card component
-     + get some html content from parent.
-     + send events to parent.	
+       + get some html content from parent.
+       + send events to parent.	
     + loading component
     + snackbar component
     + product form
