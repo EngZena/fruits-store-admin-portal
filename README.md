@@ -3,6 +3,7 @@
 
 This is the customer relationship manager website created for technical proof of some concepts using an Angular framework.
 
+[Website Link](https://fruits-store-f0e94.web.app/login)
 
 ### Used libraries
 ----------------------------
