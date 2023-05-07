@@ -36,7 +36,7 @@ This is the customer relationship manager website created for technical proof of
   + Implement login using ngrx, effect and cookies.
   + Implement functionality on the customer list [get-add-update-delete].
     + sync data with local storage.
-    + Log all changes to the console.
+    + log all changes to the console.
     + after refreshing the project, all data will be reset.
   + Pagination.
   + Implement functionality on the product list [get-add-update-delete] using "ngrx" full cycle:
