@@ -17,9 +17,6 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.submitButtonLabel = this.data.submitButtonLabel;
     this.cancelButtonLabel = this.data.cancelButtonLabel;
-    if (this.data.isDarkTheme == 'true') {
-      this.dialogRef.addPanelClass('dark-theme');
-    }
   }
 
   onCancel(): void {

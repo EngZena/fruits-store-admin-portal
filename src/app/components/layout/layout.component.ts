@@ -14,7 +14,7 @@ import { ThemeService } from '@core/services/theme/theme.service';
 })
 export class LayoutComponent implements OnInit {
   isDarkTheme: Observable<boolean> = of(false);
-  isLightTheme = true;
+  isLightTheme: any;
 
   constructor(
     private themeService: ThemeService,
@@ -22,6 +22,7 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLightTheme = !JSON.parse(this.themeService.getDarkTheme());
     this.themeService.getDarkTheme();
     this.isDarkTheme = this.themeService.isDarkTheme;
   }
