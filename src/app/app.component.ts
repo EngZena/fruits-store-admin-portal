@@ -60,6 +60,13 @@ export class AppComponent implements OnInit, AfterContentChecked {
       .subscribe((isOnline: boolean) => (this.isOnline = isOnline));
     this.themeService.getDarkTheme();
     this.isDarkTheme = this.themeService.isDarkTheme;
+    this.themeService.isDarkTheme.subscribe((theme: boolean) => {
+      if (theme) {
+        document.body.classList.add('dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+      }
+    });
     this.store.select('auth').subscribe(data => {
       this.isAuthenticated.next(true);
       if (data.user === null) {

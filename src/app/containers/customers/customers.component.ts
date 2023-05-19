@@ -62,12 +62,10 @@ export class CustomersComponent {
 
   openRemoveDialog(userName: string, id: number): void {
     this.customerUserName = userName;
-    const isDarkTheme = localStorage.getItem('darkTheme');
     let dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       data: {
         customer: userName,
-        isDarkTheme: isDarkTheme,
         submitButtonLabel: 'Yes',
         cancelButtonLabel: 'No',
         template: this.customerDeleteTemplate,
@@ -86,13 +84,11 @@ export class CustomersComponent {
   openEditDialog(customer: CustomerModel, id: number): void {
     this.choosedCustomer = customer;
     this.setCustomerEditForm(customer);
-    const isDarkTheme = localStorage.getItem('darkTheme');
     this.dialog.open(DialogComponent, {
       width: '250px',
       data: {
         customer: customer,
         title: `Edit ${customer.userName} details`,
-        isDarkTheme: isDarkTheme,
         template: this.customerEditTemplate,
         submitButtonLabel: 'Save',
         cancelButtonLabel: 'Cancel',
