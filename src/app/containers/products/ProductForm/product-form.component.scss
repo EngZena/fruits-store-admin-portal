@@ -1,3 +1,38 @@
+@import '@angular/material/theming';
+
+
+@mixin date-time-picker-theme($theme) {
+  $primary: map-get($map: ($theme),$key: primary);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .mat-datetimepicker-content {
+    background-color: map-get($background, card) !important;
+  }
+
+  .mat-datetimepicker-calendar-header {
+    color: mat-color($primary) !important;
+  }
+
+  .mat-datetimepicker-calendar-body-cell-content,
+  .mat-datetimepicker-calendar-table-header {
+    color: map-get($foreground, text) !important;
+  }
+
+  .mat-datetimepicker-clock-cell.mat-datetimepicker-clock-cell-selected {
+    color: mat-color($primary) !important;
+  }
+  :not(.mat-datetimepicker-calendar-body-disabled):hover>.mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected), 
+  .mat-datetimepicker-calendar-body-active>.mat-datetimepicker-calendar-body-cell-content:not(.mat-datetimepicker-calendar-body-selected) {
+    border: mat-color($primary) 1px solid;
+    background-color: transparent !important;
+  }
+  .mat-datetimepicker-calendar-body-selected {
+    border-radius: 25px;
+    background: rgba(0,0,0,.12) !important;
+  }
+}
+
 .product-form {
   margin-top: 1rem;
 }
