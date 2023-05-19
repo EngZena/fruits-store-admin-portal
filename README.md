@@ -17,6 +17,7 @@ This is the customer relationship manager website created for technical proof of
   + [husky](https://github.com/typicode/husky)
   + [eslint](https://eslint.org/)
   + [prettier](https://prettier.io/)
+  + [date time picker](https://www.npmjs.com/package/@mat-datetimepicker/core)
 
 
 ### Features added to the project:
@@ -49,6 +50,7 @@ This is the customer relationship manager website created for technical proof of
   + Create a shared file for colors in the project.
   + All icons are from the Material Library.
   + Handle errors globally using http interceptor. 
+  + Use the date-time picker and customize its style.
   + Shared components
     + dialog component
      + get content as template from parent component.	
