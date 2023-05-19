@@ -1,12 +1,19 @@
+import {
+  DatetimeAdapter,
+  MatDatetimepickerModule,
+  MatNativeDatetimeModule,
+} from '@mat-datetimepicker/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_DATE_LOCALE, MatCommonModule } from '@angular/material/core';
 
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/Core.module';
+import { CustomDateTimeAdapter } from '@core/adapter/custom-datatime-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCommonModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,6 +45,9 @@ const materialModules = [
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatDatetimepickerModule,
+  MatNativeDatetimeModule,
+  MatDatepickerModule,
 ];
 
 const angularModules = [
@@ -61,6 +71,10 @@ const angularModules = [
     ...angularModules,
     FlexLayoutModule,
     CoreModule,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: DatetimeAdapter, useClass: CustomDateTimeAdapter },
   ],
 })
 export class SharedModule {}

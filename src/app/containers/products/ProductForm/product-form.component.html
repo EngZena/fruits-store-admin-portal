@@ -77,6 +77,49 @@
         fxLayoutGap="2rem"
         fxLayoutGap.sm="0rem"
         fxLayoutGap.xs="0px">
+        <div fxLayout.xs="column" fxFlex="35">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Start Date And Time Of Price</mat-label>
+            <mat-datetimepicker-toggle
+              [for]="datetimePicker"
+              matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #datetimePicker type="datetime">
+            </mat-datetimepicker>
+            <input
+              matInput
+              formControlName="startPriceDateTime"
+              [matDatetimepicker]="datetimePicker"
+              required
+              autocomplete="false"
+              placeholder="Start Date And Time Of Price" />
+          </mat-form-field>
+        </div>
+        <div fxLayout.xs="column" fxFlex="35">
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>End Date And Time Of Price</mat-label>
+            <mat-datetimepicker-toggle
+              [for]="datetimePickerEnd"
+              matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #datetimePickerEnd type="datetime">
+            </mat-datetimepicker>
+            <input
+              matInput
+              formControlName="endPriceDateTime"
+              [matDatetimepicker]="datetimePickerEnd"
+              required
+              autocomplete="false"
+              placeholder="End Date And Time Of Price" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-evenly center"
+        fxLayoutGap="2rem"
+        fxLayoutGap.sm="0rem"
+        fxLayoutGap.xs="0px">
         <div
           fxLayout="column"
           fxLayout.xs="column"
