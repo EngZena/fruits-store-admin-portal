@@ -21,6 +21,8 @@ export class ProductFormComponent implements OnInit {
     fruitType: new FormControl(null, [Validators.required]),
     image: new FormControl(null, [Validators.required]),
     imageName: new FormControl(null, [Validators.required]),
+    startPriceDateTime: new FormControl(null, [Validators.required]),
+    endPriceDateTime: new FormControl(null, [Validators.required]),
   });
   invalidChars = ['-', '+', 'e', 'E'];
   imageURL: any;
@@ -33,6 +35,7 @@ export class ProductFormComponent implements OnInit {
   @Input() editProductFormMode: boolean = false;
   @Input()
   productData!: ProductModel;
+
   constructor(private store: Store<fromApp.AppState>, private router: Router) {}
 
   ngOnInit(): void {

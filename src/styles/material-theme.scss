@@ -10,17 +10,20 @@ $warn: mat-palette($mat-amber);
 $background-color: map_get($mat-pink, 50);
 $theme: mat-light-theme($primary, $accent, $warn);
 $background: map-get($theme, background);
+$foreground-color: map-get($theme, foreground);
 $background: map_merge(
   $background,
   (
     background: $background-color,
+    foreground: $foreground-color,
   )
 );
 $theme: map_merge(
   $theme,
   (
     background: $background,
-  )
+    foreground: $foreground-color,
+    )
 );
 
 @include angular-material-theme($theme);
@@ -33,7 +36,23 @@ $theme: map_merge(
   $dark-accent: mat-palette($mat-orange, A400, A100, A700);
   $dark-warn: mat-palette($mat-yellow);
   $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
+  $background-color: map-get($mat-grey, 800);
+  $background: map-get($dark-theme, background);
+  $foreground-color: map-get($dark-theme, foreground);
+  $background: map_merge(
+    $background,
+    (
+      background: $background-color,
+      foreground: $foreground-color,
+    )
+  );
+  $dark-theme: map_merge(
+    $dark-theme,
+    (
+      background: $background,
+      foreground: $foreground-color,
+    )
+  );
   @include angular-material-theme($dark-theme);
   @include conatiners-themes($dark-theme);
   @include components-themes($dark-theme);
