@@ -39,7 +39,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       }),
       finalize(() => {
         const elapsed = Date.now() - startdTime;
-        let msg = `${req.method} "${req.urlWithParams.slice(74)}"
+        let msg = `${req.method} "${req.urlWithParams.slice(64)}"
            ${requestStatus} in ${elapsed} ms.`;
         if (hasError) {
           msg = ` in ${elapsed} ms the ${req.method} request returns error ${requestStatus}`;
