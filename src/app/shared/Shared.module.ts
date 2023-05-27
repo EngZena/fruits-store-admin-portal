@@ -6,6 +6,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE, MatCommonModule } from '@angular/material/core';
 
+import { CapitalizeFirstPipe } from './pipe/capitalizeFirst.pipe';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/Core.module';
 import { CustomDateTimeAdapter } from '@core/adapter/custom-datatime-adapter';
@@ -58,8 +59,10 @@ const angularModules = [
   RouterModule,
 ];
 
+const declarationsPipes = [CapitalizeFirstPipe];
+
 @NgModule({
-  declarations: [],
+  declarations: [...declarationsPipes],
   imports: [
     ...materialModules,
     ...angularModules,
@@ -69,6 +72,7 @@ const angularModules = [
   exports: [
     ...materialModules,
     ...angularModules,
+    ...declarationsPipes,
     FlexLayoutModule,
     CoreModule,
   ],
