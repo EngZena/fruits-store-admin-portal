@@ -5,9 +5,14 @@
       class="card-content">
       <mat-card-title>{{ customer.userName }}</mat-card-title>
       <mat-card-subtitle>{{ customer.email }}</mat-card-subtitle>
-      <mat-card-subtitle>{{ customer.gender }}</mat-card-subtitle>
+      <mat-card-subtitle>{{
+        customer.gender | capitalizeFirst
+      }}</mat-card-subtitle>
       <mat-card-content>
-        <p>{{ customer.firstName }} {{ customer.lastName }}</p>
+        <p>
+          {{ customer.firstName }}
+          {{ customer.lastName }}
+        </p>
       </mat-card-content>
       <mat-card-actions>
         <button
